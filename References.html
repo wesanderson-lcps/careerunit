@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your References List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light background for contrast */
+            color: #1e293b; /* Darker text for readability */
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 0.375rem; /* rounded-md */
+            background-color: #f8fafc;
+        }
+        .section-header {
+            background-color: #e2e8f0; /* Gray 200 */
+            font-weight: bold;
+            text-align: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid #cbd5e0;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            font-weight: 500; /* font-medium */
+            color: #374151; /* text-gray-800 */
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8 lg:p-10 bg-gray-50 min-h-screen flex items-center justify-center">
+    <div id="references-content" class="max-w-4xl w-full bg-white shadow-xl rounded-xl p-6 sm:p-8 md:p-10 lg:p-12 border border-gray-200 text-center">
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-indigo-700 mb-6 leading-tight">
+            Create Your References List
+        </h1>
+
+        <p class="text-base text-gray-700 mb-8 p-4 bg-indigo-50 rounded-lg border border-indigo-200 text-left">
+            <span class="font-bold">Directions:</span> A professional references list is a document that provides contact information for individuals who can vouch for your skills, work ethic, and character. It's typically requested after an initial interview. Always ask for permission before listing someone as a reference.
+
+            <br><br>
+            <span class="font-bold">How to Ask for a Reference:</span>
+            Before you list someone as a reference, it's crucial to ask for their permission. Reach out to them politely, explain the job you're applying for, and briefly remind them of your work together. Provide them with your updated resume and the job description so they can speak accurately about your qualifications. This also gives them the opportunity to decline if they don't feel they can provide a strong reference.
+
+            <br><br>
+            Create a list of at least three professional references. For each reference, include the following information:
+            <ul class="list-disc list-inside mt-4 space-y-2">
+                <li><span class="font-semibold">Full Name:</span> The reference's complete name.</li>
+                <li><span class="font-semibold">Title:</span> Their professional title (e.g., "Former Manager," "Teacher," "Mentor").</li>
+                <li><span class="font-semibold">Organization:</span> The company or organization they work for.</li>
+                <li><span class="font-semibold">Relationship to You:</span> How you know them (e.g., "Direct Supervisor," "High School Teacher," "Volunteer Coordinator").</li>
+                <li><span class="font-semibold">Phone Number:</span> Their professional contact number.</li>
+                <li><span class="font-semibold">Email Address:</span> Their professional email address.</li>
+            </ul>
+            <p class="mt-4 font-semibold text-red-700">
+                Important: Do NOT include relatives as professional references.
+            </p>
+        </p>
+
+        <div class="mt-10 space-y-8 text-left">
+            <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
+                <h2 class="text-xl sm:text-2xl font-bold py-3 section-header">
+                    Reference 1
+                </h2>
+                <div class="p-4">
+                    <div class="form-group">
+                        <label for="ref1Name">Full Name:</label>
+                        <input type="text" id="ref1Name" name="ref1Name" class="input-field" placeholder="John Doe">
+                    </div>
+                    <div class="form-group">
+                        <label for="ref1Title">Title:</label>
+                        <input type="text" id="ref1Title" name="ref1Title" class="input-field" placeholder="Former Manager">
+                    </div>
+                    <div class="form-group">
+                        <label for="ref1Organization">Organization:</label>
+                        <input type="text" id="ref1Organization" name="ref1Organization" class="input-field" placeholder="ABC Company">
+                    </div>
+                    <div class="form-group">
+                        <label for="ref1Relationship">Relationship to You:</label>
+                        <input type="text" id="ref1Relationship" name="ref1Relationship" class="input-field" placeholder="Direct Supervisor">
+                    </div>
+                    <div class="form-group">
+                        <label for="ref1Phone">Phone Number:</label>
+                        <input type="tel" id="ref1Phone" name="ref1Phone" class="input-field" placeholder="555-123-4567">
+                    </div>
+                    <div class="form-group">
+                        <label for="ref1Email">Email Address:</label>
+                        <input type="email" id="ref1Email" name="ref1Email" class="input-field" placeholder="john.doe@example.com">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
+                <h2 class="text-xl sm:text-2xl font-bold py-3 section-header">
+                    Reference 2
+                </h2>
+                <div class="p-4">
+                    <div class="form-group">
+                        <label for="ref2Name">Full Name:</label>
+                        <input type="text" id="ref2Name" name="ref2Name" class="input-field" placeholder="Jane Smith">
+                    </div>
+                    <div class="form-group">
+                        <label for="ref2Title">Title:</label>
+                        <input type="text" id="ref2Title" name="ref2Title" class="input-field" placeholder="High School Teacher">
+                    </div>
+                    <div class="form-group">
+                        <label for="ref2Organization">Organization:</label>
+                        <input type="text" id="ref2Organization" name="ref2Organization" class="input-field" placeholder="XYZ High School">
+                    </div>
+                    <div class="form-group">
+                        <label for="ref2Relationship">Relationship to You:</label>
+                        <input type="text" id="ref2Relationship" name="ref2Relationship" class="input-field" placeholder="Marketing Teacher">
+                    </div>
+                    <div class="form-group">
+                        <label for="ref2Phone">Phone Number:</label>
+                        <input type="tel" id="ref2Phone" name="ref2Phone" class="input-field" placeholder="555-987-6543">
+                    </div>
+                    <div class="form-group">
+                        <label for="ref2Email">Email Address:</label>
+                        <input type="email" id="ref2Email" name="ref2Email" class="input-field" placeholder="jane.smith@example.com">
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
+                <h2 class="text-xl sm:text-2xl font-bold py-3 section-header">
+                    Reference 3
+                </h2>
+                <div class="p-4">
+                    <div class="form-group">
+                        <label for="ref3Name">Full Name:</label>
+                        <input type="text" id="ref3Name" name="ref3Name" class="input-field" placeholder="Mike Johnson">
+                    </div>
+                    <div class="form-group">
+                        <label for="ref3Title">Title:</label>
+                        <input type="text" id="ref3Title" name="ref3Title" class="input-field" placeholder="Volunteer Coordinator">
+                    </div>
+                    <div class="form-group">
+                        <label for="ref3Organization">Organization:</label>
+                        <input type="text" id="ref3Organization" name="ref3Organization" class="input-field" placeholder="Community Outreach Center">
+                    </div>
+                    <div class="form-group">
+                        <label for="ref3Relationship">Relationship to You:</label>
+                        <input type="text" id="ref3Relationship" name="ref3Relationship" class="input-field" placeholder="Volunteer Supervisor">
+                    </div>
+                    <div class="form-group">
+                        <label for="ref3Phone">Phone Number:</label>
+                        <input type="tel" id="ref3Phone" name="ref3Phone" class="input-field" placeholder="555-555-1212">
+                    </div>
+                    <div class="form-group">
+                        <label for="ref3Email">Email Address:</label>
+                        <input type="email" id="ref3Email" name="ref3Email" class="input-field" placeholder="mike.johnson@example.com">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button id="downloadBtn" class="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            Download as Image
+        </button>
+        <p id="downloadStatus" class="mt-4 text-sm text-gray-600 hidden">Generating image...</p>
+        </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        const downloadBtn = document.getElementById('downloadBtn');
+        const referencesContent = document.getElementById('references-content'); // Changed from worksheetContent
+        const downloadStatus = document.getElementById('downloadStatus');
+
+        /**
+         * Downloads the content of the references list as a PNG image.
+         */
+        async function downloadReferencesAsImage() { // Renamed function for clarity
+            downloadBtn.disabled = true;
+            downloadStatus.classList.remove('hidden');
+            downloadStatus.textContent = 'Generating image...'; // Updated status message
+
+            try {
+                // Use html2canvas to capture the content of the references-content div
+                const canvas = await html2canvas(referencesContent, {
+                    scale: 2, // Increase scale for better resolution
+                    useCORS: true, // Enable cross-origin images if any
+                    logging: false // Disable logging for cleaner console
+                });
+
+                // Convert the canvas to a data URL (PNG format)
+                const imageDataUrl = canvas.toDataURL('image/png');
+
+                // Create a temporary anchor element to trigger the download
+                const a = document.createElement('a');
+                a.href = imageDataUrl;
+                a.download = 'professional_references.png'; // Set the filename for the download
+                document.body.appendChild(a); // Append to body (required for Firefox)
+                a.click();
+                document.body.removeChild(a); // Remove the temporary anchor
+
+                downloadStatus.textContent = 'Download complete!';
+            } catch (error) {
+                console.error('Error generating or downloading image:', error);
+                downloadStatus.textContent = 'Download failed. Please try again.';
+            } finally {
+                downloadBtn.disabled = false;
+                setTimeout(() => {
+                    downloadStatus.classList.add('hidden');
+                    downloadStatus.textContent = 'Generating image...'; // Reset text for next time
+                }, 3000);
+            }
+        }
+
+        // Add event listener to the download button
+        downloadBtn.addEventListener('click', downloadReferencesAsImage); // Updated event listener
+    </script>
+</body>
+</html>

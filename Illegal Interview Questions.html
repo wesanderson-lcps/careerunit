@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Illegal Interview Questions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light background for contrast */
+            color: #1e293b; /* Darker text for readability */
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 0.375rem; /* rounded-md */
+            background-color: #f8fafc;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8 lg:p-10 bg-gray-50 min-h-screen flex items-center justify-center">
+    <div id="worksheet-content" class="max-w-3xl w-full bg-white shadow-xl rounded-xl p-6 sm:p-8 md:p-10 lg:p-12 border border-gray-200 text-center">
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-red-700 mb-6 leading-tight">
+            Understanding Illegal Interview Questions
+        </h1>
+
+        <p class="text-base text-gray-700 mb-8 p-4 bg-red-50 rounded-lg border border-red-200">
+            <span class="font-bold">Directions:</span> During a job interview, certain questions are legally prohibited. These questions often touch on personal characteristics that are protected by law. Review the examples of illegal questions below. Then, in the space provided, explain why these types of questions are considered illegal and unfair.
+        </p>
+
+        <div class="mt-10 space-y-8 text-left">
+            <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Examples of Illegal Questions:</h2>
+            <ul class="list-disc list-inside text-gray-700 space-y-2 mb-8">
+                <li>"How old are you?" or "What year did you graduate high school?"</li>
+                <li>"What is your ethnic background?" or "Where were you born?"</li>
+                <li>"What religious holidays do you observe?" or "Are you a member of a church?"</li>
+                <li>"Are you married?" or "Do you plan on having children?"</li>
+                <li>"Do you have any disabilities?" or "How many sick days did you take last year?"</li>
+            </ul>
+
+            <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
+                <div class="mb-3">
+                    <label for="explanation" class="block text-lg font-semibold text-gray-800 mb-1">
+                        Why are the types of questions listed above considered illegal in a job interview?
+                    </label>
+                    <textarea id="explanation" class="input-field min-h-[150px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your explanation here, focusing on why these questions are unfair and prohibited by law..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <button id="downloadBtn" class="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            Download as Image
+        </button>
+        <p id="downloadStatus" class="mt-4 text-sm text-gray-600 hidden">Generating image...</p>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        const downloadBtn = document.getElementById('downloadBtn');
+        const worksheetContent = document.getElementById('worksheet-content');
+        const downloadStatus = document.getElementById('downloadStatus');
+
+        /**
+         * Downloads the content of the worksheet as a PNG image.
+         */
+        async function downloadWorksheetAsImage() {
+            downloadBtn.disabled = true;
+            downloadStatus.classList.remove('hidden');
+
+            try {
+                // Use html2canvas to capture the content of the worksheet-content div
+                const canvas = await html2canvas(worksheetContent, {
+                    scale: 2, // Increase scale for better resolution
+                    useCORS: true, // Enable cross-origin images if any (though none are used here)
+                    logging: false // Disable logging for cleaner console
+                });
+
+                // Convert the canvas to a data URL (PNG format)
+                const imageDataUrl = canvas.toDataURL('image/png');
+
+                // Create a temporary anchor element to trigger the download
+                const a = document.createElement('a');
+                a.href = imageDataUrl;
+                a.download = 'illegal_questions_responses.png'; // Set the filename for the download
+
+                // Programmatically click the anchor to trigger the download
+                document.body.appendChild(a); // Append to body (required for Firefox)
+                a.click();
+                document.body.removeChild(a); // Remove the temporary anchor
+
+                downloadStatus.textContent = 'Download complete!';
+            } catch (error) {
+                console.error('Error generating or downloading image:', error);
+                downloadStatus.textContent = 'Download failed. Please try again.';
+            } finally {
+                downloadBtn.disabled = false;
+                setTimeout(() => {
+                    downloadStatus.classList.add('hidden');
+                    downloadStatus.textContent = 'Generating image...'; // Reset text for next time
+                }, 3000);
+            }
+        }
+
+        // Add event listener to the download button
+        downloadBtn.addEventListener('click', downloadWorksheetAsImage);
+    </script>
+</body>
+</html>

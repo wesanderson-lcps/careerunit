@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Question Practice</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Light background for contrast */
+            color: #1e293b; /* Darker text for readability */
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 0.375rem; /* rounded-md */
+            background-color: #f8fafc;
+        }
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #3b82f6;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Collapsible styles are no longer needed for STAR outline, but kept for potential future use or if other collapsible elements exist */
+        .collapsible-header {
+            @apply flex justify-between items-center bg-gray-100 p-3 rounded-md cursor-pointer mt-4;
+        }
+        .collapsible-content {
+            @apply p-3 border border-gray-200 rounded-b-md;
+            display: none;
+        }
+        .collapsible-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8 lg:p-10 bg-gray-50 min-h-screen flex items-center justify-center">
+    <div id="worksheet-content" class="max-w-3xl w-full bg-white shadow-xl rounded-xl p-6 sm:p-8 md:p-10 lg:p-12 border border-gray-200 text-center">
+
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-blue-700 mb-6 leading-tight">
+            Interview Question Practice
+        </h1>
+
+        <p class="text-lg sm:text-xl text-gray-600 mb-8">
+            Click the button below to generate 5 random interview questions and practice your answers!
+        </p>
+
+        <p class="text-base text-gray-700 mb-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <span class="font-bold">Directions:</span> Click the "Generate 5 Questions" button to get a new set of interview questions. For each question, type your answer in the provided box. Aim for responses that are detailed and demonstrate your understanding, skills, and experiences.
+        </p>
+
+        <button id="generateBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            Generate 5 Questions
+        </button>
+
+        <div id="question-container" class="mt-10 space-y-6 text-left">
+            </div>
+
+        <button id="feedbackBtn" class="mt-8 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+            Get Feedback on My Answers
+        </button>
+
+        <div id="feedback-area" class="mt-10 p-6 bg-yellow-50 rounded-lg border border-yellow-200 text-left hidden">
+            <h2 class="text-xl font-bold text-yellow-800 mb-4">Feedback:</h2>
+            <div id="feedback-content" class="text-gray-800">
+                </div>
+            <div id="feedback-loading" class="text-gray-600 mt-4 hidden">
+                <span class="loading-spinner"></span> Generating feedback...
+            </div>
+        </div>
+
+        <button id="downloadBtn" class="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            Download as Image
+        </button>
+        <p id="downloadStatus" class="mt-4 text-sm text-gray-600 hidden">Generating image...</p>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script type="module">
+        const interviewQuestions = [
+            'Tell me about yourself.', 'Why are you interested in this specific role?', 'What are your greatest strengths?',
+            'What are your weaknesses?', 'Describe a challenging situation you faced at work/school and how you overcame it.',
+            'Where do you see yourself in 5 years?', 'How do you handle pressure and stress?',
+            'Give an example of a time you worked collaboratively in a team.', 'What motivates you to excel in your work?',
+            'How do you stay updated with industry trends and knowledge?', 'Why should we hire you?',
+            'What is your greatest professional achievement?', 'Describe your ideal company culture.',
+            'How do you prioritize your work?', 'Tell me about a time you failed and what you learned from it.',
+            'What are your salary expectations?', 'How do you define success?',
+            'What are your hobbies outside of work/school?', 'Describe a time you had to deal with a difficult person.',
+            'What do you know about our company/organization?', 'Why did you choose your major/field of study?',
+            'How do you handle constructive criticism?', 'What is your leadership style?',
+            'Tell me about a time you had to adapt to a change.', 'What are your long-term career goals?',
+            'How do you manage your time effectively?', 'What kind of work environment do you thrive in?',
+            'What questions do you have for me?', 'How do you measure your own performance?'
+        ];
+
+        const generateBtn = document.getElementById('generateBtn');
+        const feedbackBtn = document.getElementById('feedbackBtn');
+        const questionContainer = document.getElementById('question-container');
+        const feedbackArea = document.getElementById('feedback-area');
+        const feedbackContent = document.getElementById('feedback-content');
+        const feedbackLoading = document.getElementById('feedback-loading');
+
+        function getRandomQuestions(questionsArray, numQuestions) {
+            const shuffled = [...questionsArray];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled.slice(0, numQuestions);
+        }
+
+        function renderQuestions() {
+            questionContainer.innerHTML = '';
+            feedbackArea.classList.add('hidden');
+            feedbackContent.innerHTML = '';
+
+            const randomQuestions = getRandomQuestions(interviewQuestions, 5);
+
+            randomQuestions.forEach((question, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'mb-6';
+
+                const questionP = document.createElement('p');
+                questionP.className = 'text-lg font-semibold text-gray-800 mb-2';
+                questionP.textContent = `${index + 1}. ${question}`;
+
+                const answerTextarea = document.createElement('textarea');
+                answerTextarea.id = `answer-${index}`;
+                answerTextarea.className = 'input-field min-h-[100px] shadow-sm focus:ring-blue-500 focus:border-blue-500';
+                answerTextarea.placeholder = 'Type your answer here...';
+                answerTextarea.dataset.question = question; // Store the question with the textarea
+
+                questionDiv.appendChild(questionP);
+                questionDiv.appendChild(answerTextarea);
+
+                // Removed STAR method button and container
+                // Removed STAR loading spinner
+
+                questionContainer.appendChild(questionDiv);
+            });
+        }
+
+        async function getFeedback() {
+            feedbackArea.classList.remove('hidden');
+            feedbackContent.innerHTML = '';
+            feedbackLoading.classList.remove('hidden');
+
+            const answers = [];
+            for (let i = 0; i < 5; i++) {
+                const textarea = document.getElementById(`answer-${i}`);
+                if (textarea) {
+                    answers.push({
+                        question: textarea.dataset.question,
+                        answer: textarea.value
+                    });
+                }
+            }
+
+            let prompt = "Provide constructive feedback on the following interview answers. Focus on clarity, completeness, relevance, and professionalism. Suggest areas for improvement. Format the feedback clearly for each question.\n\n";
+            answers.forEach((item, index) => {
+                prompt += `Question ${index + 1}: ${item.question}\n`;
+                prompt += `Your Answer: ${item.answer || "[No answer provided]"}\n\n`;
+            });
+
+            try {
+                // Gemini API call
+                let chatHistory = [];
+                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                const payload = { contents: chatHistory };
+                const apiKey = ""; // Canvas will provide this at runtime
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+
+                    // Apply styling to feedback content
+                    const feedbackLines = text.split('\n');
+                    let formattedFeedback = '';
+                    let inList = false;
+
+                    feedbackLines.forEach(line => {
+                        const trimmedLine = line.trim();
+                        if (trimmedLine.startsWith('Question ') && trimmedLine.includes(':')) {
+                            if (inList) { // Close previous list if any
+                                formattedFeedback += '</ul>';
+                                inList = false;
+                            }
+                            formattedFeedback += `<h3 class="text-lg font-semibold text-gray-800 mt-4 mb-2">${trimmedLine}</h3>`;
+                        } else if (trimmedLine.startsWith('- ')) {
+                            if (!inList) { // Start new list
+                                formattedFeedback += '<ul class="list-disc list-inside text-gray-700 mb-2">';
+                                inList = true;
+                            }
+                            formattedFeedback += `<li class="ml-4">${trimmedLine.substring(2)}</li>`;
+                        } else if (trimmedLine !== '') {
+                            if (inList) { // Close previous list if any
+                                formattedFeedback += '</ul>';
+                                inList = false;
+                            }
+                            formattedFeedback += `<p class="text-gray-700 mb-1">${trimmedLine}</p>`;
+                        }
+                    });
+
+                    if (inList) { // Close any open list at the end
+                        formattedFeedback += '</ul>';
+                    }
+                    feedbackContent.innerHTML = formattedFeedback;
+
+                } else {
+                    feedbackContent.textContent = "Could not generate feedback. Please try again.";
+                    console.error("Unexpected API response structure:", result);
+                }
+            } catch (error) {
+                feedbackContent.textContent = "An error occurred while generating feedback. Please check your network connection or try again later.";
+                console.error("Error fetching feedback:", error);
+            } finally {
+                feedbackLoading.classList.add('hidden');
+            }
+        }
+
+        // Removed generateStarOutline function
+
+        // Event Listeners
+        generateBtn.addEventListener('click', renderQuestions);
+        feedbackBtn.addEventListener('click', getFeedback);
+
+        // Initial render of questions when the page loads
+        document.addEventListener('DOMContentLoaded', renderQuestions);
+
+        // --- Download as Image Logic ---
+        const downloadBtn = document.getElementById('downloadBtn');
+        const worksheetContent = document.getElementById('worksheet-content'); // Main content div
+        const downloadStatus = document.getElementById('downloadStatus');
+
+        /**
+         * Downloads the content of the worksheet as a PNG image.
+         */
+        async function downloadWorksheetAsImage() {
+            downloadBtn.disabled = true;
+            downloadStatus.classList.remove('hidden');
+
+            try {
+                // Use html2canvas to capture the content of the worksheet-content div
+                const canvas = await html2canvas(worksheetContent, {
+                    scale: 2, // Increase scale for better resolution
+                    useCORS: true, // Enable cross-origin images if any (though none are used here)
+                    logging: false // Disable logging for cleaner console
+                });
+
+                // Convert the canvas to a data URL (PNG format)
+                const imageDataUrl = canvas.toDataURL('image/png');
+
+                // Create a temporary anchor element to trigger the download
+                const a = document.createElement('a');
+                a.href = imageDataUrl;
+                a.download = 'interview_practice_responses.png'; // Set the filename for the download
+
+                // Programmatically click the anchor to trigger the download
+                document.body.appendChild(a); // Append to body (required for Firefox)
+                a.click();
+                document.body.removeChild(a); // Remove the temporary anchor
+
+                downloadStatus.textContent = 'Download complete!';
+            } catch (error) {
+                console.error('Error generating or downloading image:', error);
+                downloadStatus.textContent = 'Download failed. Please try again.';
+            } finally {
+                downloadBtn.disabled = false;
+                setTimeout(() => {
+                    downloadStatus.classList.add('hidden');
+                    downloadStatus.textContent = 'Generating image...'; // Reset text for next time
+                }, 3000);
+            }
+        }
+
+        // Add event listener to the download button
+        downloadBtn.addEventListener('click', downloadWorksheetAsImage);
+    </script>
+</body>
+</html>
