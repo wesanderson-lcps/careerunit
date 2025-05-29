@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questions for the Interviewer</title>
+    <title>Comprehensive Career Project Worksheets</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -18,6 +18,88 @@
             border: 1px solid #cbd5e0;
             border-radius: 0.375rem; /* rounded-md */
             background-color: #f8fafc;
+        }
+        .table-header {
+            background-color: #e2e8f0; /* Gray 200 */
+            font-weight: bold;
+            text-align: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid #cbd5e0;
+        }
+        .table-cell {
+            padding: 0.75rem;
+            border-right: 1px solid #cbd5e0;
+            border-bottom: 1px solid #cbd5e0;
+        }
+        .table-cell:last-child {
+            border-right: none;
+        }
+        /* Specific grid cell styling to ensure borders are correct */
+        .grid.grid-cols-4 > .table-cell:nth-child(4n) { border-right: none; }
+        .grid.grid-cols-4 > .table-cell:nth-child(4n - 3) { border-left: 1px solid #cbd5e0; }
+        .grid.grid-cols-4 > .table-cell:nth-last-child(-n+4) { border-bottom: none; }
+
+        .grid.grid-cols-3 > .table-cell:nth-child(3n) { border-right: none; }
+        .grid.grid-cols-3 > .table-cell:nth-child(3n - 2) { border-left: 1px solid #cbd5e0; }
+        .grid.grid-cols-3 > .table-cell:nth-last-child(-n+3) { border-bottom: none; }
+
+        .section-header {
+            background-color: #e2e8f0; /* Gray 200 */
+            font-weight: bold;
+            text-align: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid #cbd5e0;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        label {
+            display: block;
+            font-weight: 500; /* font-medium */
+            color: #374151; /* text-gray-800 */
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tab styling: Segmented Control Tabs */
+        .tab-nav-container {
+            margin-bottom: 2rem;
+            padding: 0.25rem; /* Padding inside the container for the segmented look */
+            background-color: #e2e8f0; /* Light gray background for the container */
+            border-radius: 0.75rem; /* Rounded corners for the container */
+            display: grid; /* Changed from inline-flex to grid */
+            grid-template-columns: repeat(3, 1fr); /* New: 3 columns of equal width */
+            gap: 0.25rem; /* Small gap between segments */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Inner shadow for depth */
+            width: 100%; /* Ensure it takes full width for grid */
+            max-width: 900px; /* Limit width for better appearance on very wide screens */
+            margin-left: auto; /* Center the grid container */
+            margin-right: auto; /* Center the grid container */
+        }
+        .tab-button {
+            @apply text-gray-700 whitespace-nowrap py-4 px-10 font-semibold text-sm sm:text-base;
+            border: none;
+            background-color: transparent;
+            border-radius: 0.625rem; /* Slightly less rounded than container */
+            transition: all 0.2s ease-in-out;
+            text-align: center;
+            min-width: 120px;
+        }
+        .tab-button.active {
+            @apply text-blue-900;
+            background-color: #ffffff; /* White background for active tab */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15); /* Prominent shadow for active tab */
+            font-weight: 700;
+        }
+        .tab-button:hover:not(.active) {
+            background-color: #dbeafe; /* Light blue on hover for inactive tabs */
+            color: #2563eb;
+        }
+        .tab-content {
+            display: none;
+            padding-top: 1.5rem;
+        }
+        .tab-content.active {
+            display: block;
         }
         .loading-spinner {
             border: 4px solid rgba(0, 0, 0, 0.1);
@@ -34,276 +116,1056 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        .collapsible-header {
-            @apply flex justify-between items-center bg-gray-100 p-3 rounded-md cursor-pointer mt-4;
-        }
-        .collapsible-content {
-            @apply p-3 border border-gray-200 rounded-b-md;
-            display: none;
-        }
-        .collapsible-content.active {
-            display: block;
-        }
     </style>
 </head>
 <body class="p-4 sm:p-6 md:p-8 lg:p-10 bg-gray-50 min-h-screen flex items-center justify-center">
-    <div id="worksheet-content" class="max-w-3xl w-full bg-white shadow-xl rounded-xl p-6 sm:p-8 md:p-10 lg:p-12 border border-gray-200 text-center">
+    <div class="max-w-6xl w-full bg-white shadow-xl rounded-xl p-6 sm:p-8 md:p-10 lg:p-12 border border-gray-200 text-center">
 
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-blue-700 mb-6 leading-tight">
-            Questions to Ask the Interviewer
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-gray-800 mb-8 leading-tight">
+            Comprehensive Career Project Worksheets
         </h1>
 
-        <p class="text-base text-gray-700 mb-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
-            <span class="font-bold">Directions:</span> It's important to ask thoughtful questions at the end of an interview. This shows your interest and helps you learn more about the role and company. Below are some example questions. Use the spaces provided to write down 5 questions you want to ask your interviewer. Focus on questions that demonstrate your engagement, curiosity, and understanding of the role or company. Avoid questions that can be easily answered by a quick search on the company's website.
-        </p>
-
-        <div class="mt-10 space-y-8 text-left">
-            <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Example Questions:</h2>
-            <ul class="list-disc list-inside text-gray-700 space-y-2 mb-8">
-                <li>What does a typical day look like for someone in this role?</li>
-                <li>How would you describe the team culture here?</li>
-                <li>What are the next steps in the hiring process?</li>
-            </ul>
-
-            <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Your Questions:</h2>
-            <div class="space-y-6">
-                <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
-                    <div class="mb-3">
-                        <label for="question-1" class="block text-lg font-semibold text-gray-800 mb-1">1. Your Question:</label>
-                        <textarea id="question-1" class="input-field min-h-[60px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your question here..."></textarea>
-                    </div>
-                    <div>
-                        <label for="explanation-1" class="block text-sm font-medium text-gray-600 mb-1">Why ask this question?</label>
-                        <textarea id="explanation-1" class="input-field min-h-[40px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Explain your reason for asking this question..."></textarea>
-                    </div>
-                </div>
-
-                <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
-                    <div class="mb-3">
-                        <label for="question-2" class="block text-lg font-semibold text-gray-800 mb-1">2. Your Question:</label>
-                        <textarea id="question-2" class="input-field min-h-[60px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your question here..."></textarea>
-                    </div>
-                    <div>
-                        <label for="explanation-2" class="block text-sm font-medium text-gray-600 mb-1">Why ask this question?</label>
-                        <textarea id="explanation-2" class="input-field min-h-[40px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Explain your reason for asking this question..."></textarea>
-                    </div>
-                </div>
-
-                <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
-                    <div class="mb-3">
-                        <label for="question-3" class="block text-lg font-semibold text-gray-800 mb-1">3. Your Question:</label>
-                        <textarea id="question-3" class="input-field min-h-[60px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your question here..."></textarea>
-                    </div>
-                    <div>
-                        <label for="explanation-3" class="block text-sm font-medium text-gray-600 mb-1">Why ask this question?</label>
-                        <textarea id="explanation-3" class="input-field min-h-[40px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Explain your reason for asking this question..."></textarea>
-                    </div>
-                </div>
-
-                <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
-                    <div class="mb-3">
-                        <label for="question-4" class="block text-lg font-semibold text-gray-800 mb-1">4. Your Question:</label>
-                        <textarea id="question-4" class="input-field min-h-[60px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your question here..."></textarea>
-                    </div>
-                    <div>
-                        <label for="explanation-4" class="block text-sm font-medium text-gray-600 mb-1">Why ask this question?</label>
-                        <textarea id="explanation-4" class="input-field min-h-[40px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Explain your reason for asking this question..."></textarea>
-                    </div>
-                </div>
-
-                <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
-                    <div class="mb-3">
-                        <label for="question-5" class="block text-lg font-semibold text-gray-800 mb-1">5. Your Question:</label>
-                        <textarea id="question-5" class="input-field min-h-[60px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your question here..."></textarea>
-                    </div>
-                    <div>
-                        <label for="explanation-5" class="block text-sm font-medium text-gray-600 mb-1">Why ask this question?</label>
-                        <textarea id="explanation-5" class="input-field min-h-[40px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Explain your reason for asking this question..."></textarea>
-                    </div>
-                </div>
-            </div>
-
-            <div class="mt-8 p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
-                <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Reflection:</h2>
-                <div class="mb-3">
-                    <label for="importance-question" class="block text-lg font-semibold text-gray-800 mb-1">Why is it important to come prepared with questions to ask the interviewer?</label>
-                    <textarea id="importance-question" class="input-field min-h-[100px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your answer here..."></textarea>
-                </div>
-            </div>
-
-            <button id="getFeedbackBtn" class="mt-8 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">
-                Get AI Feedback on My Questions ✨
-            </button>
-
-            <div id="feedback-area" class="mt-10 p-6 bg-yellow-50 rounded-lg border border-yellow-200 text-left hidden">
-                <h2 class="text-xl font-bold text-yellow-800 mb-4">AI Feedback:</h2>
-                <div id="feedback-content" class="text-gray-800">
-                    </div>
-                <div id="feedback-loading" class="text-gray-600 mt-4 hidden">
-                    <span class="loading-spinner"></span> Generating feedback...
-                </div>
-            </div>
-
-            <button id="downloadBtn" class="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                Download as Image
-            </button>
-            <p id="downloadStatus" class="mt-4 text-sm text-gray-600 hidden">Generating image...</p>
-
+        <div class="mb-6">
+            <nav class="tab-nav-container" aria-label="Tabs">
+                <button class="tab-button active" data-tab="career-assessments-section">Career Assessments</button>
+                <button class="tab-button" data-tab="career-info-worksheet-section">Career Info Worksheet</button>
+                <button class="tab-button" data-tab="references-section">References List</button>
+                <button class="tab-button" data-tab="interview-practice-questions-section">Interview Practice Questions</button>
+                <button class="tab-button" data-tab="questions-to-ask-section">Questions for Interviewer</button>
+                <button class="tab-button" data-tab="illegal-questions-section">Illegal Interview Questions</button>
+            </nav>
         </div>
 
+        <div id="tab-content-container">
+            <div id="career-assessments-section" class="tab-content active">
+                <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-700 mb-6">CAREER ASSESSMENTS</h2>
+                <p class="text-base sm:text-lg text-gray-700 mb-6">
+                    <span class="font-bold">Directions:</span> Fill out the chart below after completing the Career Interests & Work Values Assessment and the Skill Assessment using the VA Wizard at
+                    <a href="https://www.vawizard.org/wizard/careersAssess" target="_blank" class="text-blue-600 hover:underline">https://www.vawizard.org/wizard/careersAssess</a>
+                </p>
+
+                <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
+                    <h3 class="text-xl sm:text-2xl font-bold text-center py-3 table-header">
+                        Career Interests and Values Assessment
+                    </h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 border-t border-gray-300">
+                        <div class="table-cell table-header col-span-1 sm:col-span-1">Primary Interest</div>
+                        <div class="table-cell table-header col-span-1 sm:col-span-1">Secondary Interest</div>
+                        <div class="table-cell table-header col-span-1 sm:col-span-1">Primary Value</div>
+                        <div class="table-cell table-header col-span-1 sm:col-span-1">Secondary Value</div>
+                        <div class="table-cell col-span-1 sm:col-span-1"><input type="text" id="primary-interest" class="input-field" placeholder="Enter Primary Interest"></div>
+                        <div class="table-cell col-span-1 sm:col-span-1"><input type="text" id="secondary-interest" class="input-field" placeholder="Enter Secondary Interest"></div>
+                        <div class="table-cell col-span-1 sm:col-span-1"><input type="text" id="primary-value" class="input-field" placeholder="Enter Primary Value"></div>
+                        <div class="table-cell col-span-1 sm:col-span-1"><input type="text" id="secondary-value" class="input-field" placeholder="Enter Secondary Value"></div>
+                    </div>
+                </div>
+
+                <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
+                    <h3 class="text-xl sm:text-2xl font-bold text-center py-3 table-header">
+                        Do you agree with these results? Why or why not?
+                    </h3>
+                    <div class="p-4">
+                        <textarea id="agree-results" class="input-field min-h-[80px]" placeholder="Explain your thoughts here..."></textarea>
+                    </div>
+                </div>
+
+                <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
+                    <h3 class="text-xl sm:text-2xl font-bold text-center py-3 table-header">
+                        Pick 3 Careers (4 or > 4 year degree)
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 border-t border-gray-300">
+                        <div class="table-cell col-span-1"><input type="text" id="career-1" class="input-field" placeholder="Enter Career 1"></div>
+                        <div class="table-cell col-span-1"><input type="text" id="career-2" class="input-field" placeholder="Enter Career 2"></div>
+                        <div class="table-cell col-span-1"><input type="text" id="career-3" class="input-field" placeholder="Enter Career 3"></div>
+                    </div>
+                </div>
+
+                <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
+                    <h3 class="text-xl sm:text-2xl font-bold text-center py-3 table-header">
+                        Why did you choose these careers?
+                    </h3>
+                    <div class="p-4">
+                        <textarea id="why-careers" class="input-field min-h-[80px]" placeholder="Explain your reasons here..."></textarea>
+                    </div>
+                </div>
+
+                <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
+                    <h3 class="text-xl sm:text-2xl font-bold text-center py-3 table-header">
+                        Career Clusters (Name & % Match)
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 p-4">
+                        <input type="text" id="cluster-1" class="input-field" placeholder="Cluster 1 & % Match">
+                        <input type="text" id="cluster-2" class="input-field" placeholder="Cluster 2 & % Match">
+                        <input type="text" id="cluster-3" class="input-field" placeholder="Cluster 3 & % Match">
+                    </div>
+                </div>
+
+                <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
+                    <h3 class="text-xl sm:text-2xl font-bold text-center py-3 table-header">
+                        Skills Assessment & Matching Career Clusters
+                    </h3>
+                    <div class="p-4 text-gray-700 text-center">
+                        <p class="mb-4">Go to <a href="https://www.vawizard.org/wizard/skill-assess" target="_blank" class="text-blue-600 hover:underline">https://www.vawizard.org/wizard/skill-assess</a> to complete the Skills Assessment.</p>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <input type="text" id="matching-cluster-1" class="input-field" placeholder="Matching Cluster 1">
+                            <input type="text" id="matching-cluster-2" class="input-field" placeholder="Matching Cluster 2">
+                            <input type="text" id="matching-cluster-3" class="input-field" placeholder="Matching Cluster 3">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
+                    <h3 class="text-xl sm:text-2xl font-bold text-center py-3 table-header">
+                        How do you feel about the Career Clusters you were matched with?
+                    </h3>
+                    <div class="p-4">
+                        <textarea id="feelings-on-clusters" class="input-field min-h-[80px]" placeholder="Share your thoughts and feelings here..."></textarea>
+                    </div>
+                </div>
+
+                <button id="downloadCareerAssessmentsBtn" class="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Download Career Assessments as Image
+                </button>
+                <p id="downloadCareerAssessmentsStatus" class="mt-4 text-sm text-gray-600 hidden">Generating image...</p>
+            </div>
+
+            <div id="career-info-worksheet-section" class="tab-content">
+                <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-700 mb-6">CAREER INFO WORKSHEET</h2>
+                <p class="text-base sm:text-lg text-gray-700 mb-6">
+                    <span class="font-bold">Directions:</span> Go to <a href="https://www.onetonline.org/find/career" target="_blank" class="text-blue-600 hover:underline">https://www.onetonline.org/find/career</a> to research possible careers. 2 of your 3 jobs must be from the
+                    Marketing or Business Management & Administration clusters. The other job can be from any cluster. Use the "Summary"
+                    and "Details" tabs to collect the information required. You cannot choose jobs such as "Model" or "Athlete".
+                </p>
+
+                <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
+                    <h3 class="text-xl sm:text-2xl font-bold text-center py-3 table-header">
+                        Career Information
+                    </h3>
+                    <div class="grid grid-cols-4 border-t border-gray-300">
+                        <div class="table-cell table-header"></div>
+                        <div class="table-cell table-header">Career 1 Name</div>
+                        <div class="table-cell table-header">Career 2 Name</div>
+                        <div class="table-cell table-header">Career 3 Name</div>
+
+                        <div class="table-cell table-header">Tasks (list 2)</div>
+                        <div class="table-cell"><textarea id="career1-task" class="input-field min-h-[60px]" placeholder="Task 1&#10;Task 2"></textarea></div>
+                        <div class="table-cell"><textarea id="career2-task" class="input-field min-h-[60px]" placeholder="Task 1&#10;Task 2"></textarea></div>
+                        <div class="table-cell"><textarea id="career3-task" class="input-field min-h-[60px]" placeholder="Task 1&#10;Task 2"></textarea></div>
+
+                        <div class="table-cell table-header">Technology Skills (list 2)</div>
+                        <div class="table-cell"><textarea id="career1-tech" class="input-field min-h-[60px]" placeholder="Tech Skill 1&#10;Tech Skill 2"></textarea></div>
+                        <div class="table-cell"><textarea id="career2-tech" class="input-field min-h-[60px]" placeholder="Tech Skill 1&#10;Tech Skill 2"></textarea></div>
+                        <div class="table-cell"><textarea id="career3-tech" class="input-field min-h-[60px]" placeholder="Tech Skill 1&#10;Tech Skill 2"></textarea></div>
+
+                        <div class="table-cell table-header">Knowledge (list 2)</div>
+                        <div class="table-cell"><textarea id="career1-knowledge" class="input-field min-h-[60px]" placeholder="Knowledge 1&#10;Knowledge 2"></textarea></div>
+                        <div class="table-cell"><textarea id="career2-knowledge" class="input-field min-h-[60px]" placeholder="Knowledge 1&#10;Knowledge 2"></textarea></div>
+                        <div class="table-cell"><textarea id="career3-knowledge" class="input-field min-h-[60px]" placeholder="Knowledge 1&#10;Knowledge 2"></textarea></div>
+
+                        <div class="table-cell table-header">Skills (list 2)</div>
+                        <div class="table-cell"><textarea id="career1-skills" class="input-field min-h-[60px]" placeholder="Skill 1&#10;Skill 2"></textarea></div>
+                        <div class="table-cell"><textarea id="career2-skills" class="input-field min-h-[60px]" placeholder="Skill 1&#10;Skill 2"></textarea></div>
+                        <div class="table-cell"><textarea id="career3-skills" class="input-field min-h-[60px]" placeholder="Skill 1&#10;Skill 2"></textarea></div>
+
+                        <div class="table-cell table-header">Abilities (list 2)</div>
+                        <div class="table-cell"><textarea id="career1-abilities" class="input-field min-h-[60px]" placeholder="Ability 1&#10;Ability 2"></textarea></div>
+                        <div class="table-cell"><textarea id="career2-abilities" class="input-field min-h-[60px]" placeholder="Ability 1&#10;Ability 2"></textarea></div>
+                        <div class="table-cell"><textarea id="career3-abilities" class="input-field min-h-[60px]" placeholder="Ability 1&#10;Ability 2"></textarea></div>
+
+                        <div class="table-cell table-header">Job Zone</div>
+                        <div class="table-cell"><input type="text" id="career1-jobzone" class="input-field" placeholder="Job Zone"></div>
+                        <div class="table-cell"><input type="text" id="career2-jobzone" class="input-field" placeholder="Job Zone"></div>
+                        <div class="table-cell"><input type="text" id="career3-jobzone" class="input-field" placeholder="Job Zone"></div>
+
+                        <div class="table-cell table-header">Education</div>
+                        <div class="table-cell"><input type="text" id="career1-education" class="input-field" placeholder="Education"></div>
+                        <div class="table-cell"><input type="text" id="career2-education" class="input-field" placeholder="Education"></div>
+                        <div class="table-cell"><input type="text" id="career3-education" class="input-field" placeholder="Education"></div>
+
+                        <div class="table-cell table-header">Job Training</div>
+                        <div class="table-cell"><input type="text" id="career1-training" class="input-field" placeholder="Job Training"></div>
+                        <div class="table-cell"><input type="text" id="career2-training" class="input-field" placeholder="Job Training"></div>
+                        <div class="table-cell"><input type="text" id="career3-training" class="input-field" placeholder="Job Training"></div>
+
+                        <div class="table-cell table-header">Median Wages</div>
+                        <div class="table-cell"><input type="text" id="career1-wages" class="input-field" placeholder="Median Wages"></div>
+                        <div class="table-cell"><input type="text" id="career2-wages" class="input-field" placeholder="Median Wages"></div>
+                        <div class="table-cell"><input type="text" id="career3-wages" class="input-field" placeholder="Median Wages"></div>
+
+                        <div class="table-cell table-header">Projected Growth (%)</div>
+                        <div class="table-cell"><input type="text" id="career1-growth" class="input-field" placeholder="Projected Growth"></div>
+                        <div class="table-cell"><input type="text" id="career2-growth" class="input-field" placeholder="Projected Growth"></div>
+                        <div class="table-cell"><input type="text" id="career3-growth" class="input-field" placeholder="Projected Growth"></div>
+                    </div>
+                </div>
+
+                <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
+                    <h3 class="text-xl sm:text-2xl font-bold text-center py-3 table-header">
+                        College Research
+                    </h3>
+                    <div class="p-4">
+                        <p class="text-base sm:text-lg text-gray-700 mb-4">
+                            <span class="font-bold">Directions:</span> Choose one of the 3 careers you researched above. Go back to <a href="https://www.onetonline.org/find/career" target="_blank" class="text-blue-600 hover:underline">https://www.onetonline.org/find/career</a> and find
+                            your career again. Scroll down until you find "Training & Credentials" and choose Virginia as your state. Pick your 3
+                            colleges from the list provided.
+                        </p>
+                        <div class="mb-6">
+                            <label for="chosenCareerName" class="block text-lg font-medium text-gray-700 mb-2">Career Name:</label>
+                            <input type="text" id="chosenCareerName" class="input-field" placeholder="Enter the chosen career name">
+                        </div>
+
+                        <div class="mb-6 border border-gray-300 rounded-lg overflow-hidden">
+                            <h3 class="text-lg sm:text-xl font-semibold text-gray-800 bg-gray-100 p-3">College # 1</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 border-t border-gray-300">
+                                <div class="table-cell table-header col-span-1">College Name</div>
+                                <div class="table-cell table-header col-span-1">Program Name</div>
+                                <div class="table-cell table-header col-span-1">Degree</div>
+                                <div class="table-cell col-span-1"><input type="text" id="college1-name" class="input-field" placeholder="College Name"></div>
+                                <div class="table-cell col-span-1"><input type="text" id="college1-program" class="input-field" placeholder="Program Name"></div>
+                                <div class="table-cell col-span-1"><input type="text" id="college1-degree" class="input-field" placeholder="Degree"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6 border border-gray-300 rounded-lg overflow-hidden">
+                            <h3 class="text-lg sm:text-xl font-semibold text-gray-800 bg-gray-100 p-3">College # 2</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 border-t border-gray-300">
+                                <div class="table-cell table-header col-span-1">College Name</div>
+                                <div class="table-cell table-header col-span-1">Program Name</div>
+                                <div class="table-cell table-header col-span-1">Degree</div>
+                                <div class="table-cell col-span-1"><input type="text" id="college2-name" class="input-field" placeholder="College Name"></div>
+                                <div class="table-cell col-span-1"><input type="text" id="college2-program" class="input-field" placeholder="Program Name"></div>
+                                <div class="table-cell col-span-1"><input type="text" id="college2-degree" class="input-field" placeholder="Degree"></div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6 border border-gray-300 rounded-lg overflow-hidden">
+                            <h3 class="text-lg sm:text-xl font-semibold text-gray-800 bg-gray-100 p-3">College # 3</h3>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 border-t border-gray-300">
+                                <div class="table-cell table-header col-span-1">College Name</div>
+                                <div class="table-cell table-header col-span-1">Program Name</div>
+                                <div class="table-cell table-header col-span-1">Degree</div>
+                                <div class="table-cell col-span-1"><input type="text" id="college3-name" class="input-field" placeholder="College Name"></div>
+                                <div class="table-cell col-span-1"><input type="text" id="college3-program" class="input-field" placeholder="Program Name"></div>
+                                <div class="table-cell col-span-1"><input type="text" id="college3-degree" class="input-field" placeholder="Degree"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="downloadCareerInfoBtn" class="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Download Career Info as Image
+                </button>
+                <p id="downloadCareerInfoStatus" class="mt-4 text-sm text-gray-600 hidden">Generating image...</p>
+            </div>
+
+            <div id="references-section" class="tab-content">
+                <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-700 mb-6">Create Your References List</h2>
+                <p class="text-base text-gray-700 mb-8 p-4 bg-indigo-50 rounded-lg border border-indigo-200 text-left">
+                    <span class="font-bold">Directions:</span> A professional references list is a document that provides contact information for individuals who can vouch for your skills, work ethic, and character. It's typically requested after an initial interview. Always ask for permission before listing someone as a reference.
+
+                    <br><br>
+                    <span class="font-bold">How to Ask for a Reference:</span>
+                    Before you list someone as a reference, it's crucial to ask for their permission. Reach out to them politely, explain the job you're applying for, and briefly remind them of your work together. Provide them with your updated resume and the job description so they can speak accurately about your qualifications. This also gives them the opportunity to decline if they don't feel they can provide a strong reference.
+
+                    <br><br>
+                    Create a list of at least three professional references. For each reference, include the following information:
+                    <ul class="list-disc list-inside mt-4 space-y-2">
+                        <li><span class="font-semibold">Full Name:</span> The reference's complete name.</li>
+                        <li><span class="font-semibold">Title:</span> Their professional title (e.g., "Former Manager," "Teacher," "Mentor").</li>
+                        <li><span class="font-semibold">Organization:</span> The company or organization they work for.</li>
+                        <li><span class="font-semibold">Relationship to You:</span> How you know them (e.g., "Direct Supervisor," "High School Teacher," "Volunteer Coordinator").</li>
+                        <li><span class="font-semibold">Phone Number:</span> Their professional contact number.</li>
+                        <li><span class="font-semibold">Email Address:</span> Their professional email address.</li>
+                    </ul>
+                    <p class="mt-4 font-semibold text-red-700">
+                        Important: Do NOT include relatives as professional references.
+                    </p>
+                </p>
+
+                <div class="mt-10 space-y-8 text-left">
+                    <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
+                        <h3 class="text-xl sm:text-2xl font-bold py-3 section-header">
+                            Reference 1
+                        </h3>
+                        <div class="p-4">
+                            <div class="form-group">
+                                <label for="ref1Name">Full Name:</label>
+                                <input type="text" id="ref1Name" name="ref1Name" class="input-field" placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="ref1Title">Title:</label>
+                                <input type="text" id="ref1Title" name="ref1Title" class="input-field" placeholder="Former Manager">
+                            </div>
+                            <div class="form-group">
+                                <label for="ref1Organization">Organization:</label>
+                                <input type="text" id="ref1Organization" name="ref1Organization" class="input-field" placeholder="ABC Company">
+                            </div>
+                            <div class="form-group">
+                                <label for="ref1Relationship">Relationship to You:</label>
+                                <input type="text" id="ref1Relationship" name="ref1Relationship" class="input-field" placeholder="Direct Supervisor">
+                            </div>
+                            <div class="form-group">
+                                <label for="ref1Phone">Phone Number:</label>
+                                <input type="tel" id="ref1Phone" name="ref1Phone" class="input-field" placeholder="555-123-4567">
+                            </div>
+                            <div class="form-group">
+                                <label for="ref1Email">Email Address:</label>
+                                <input type="email" id="ref1Email" name="ref1Email" class="input-field" placeholder="john.doe@example.com">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
+                        <h3 class="text-xl sm:text-2xl font-bold py-3 section-header">
+                            Reference 2
+                        </h3>
+                        <div class="p-4">
+                            <div class="form-group">
+                                <label for="ref2Name">Full Name:</label>
+                                <input type="text" id="ref2Name" name="ref2Name" class="input-field" placeholder="Jane Smith">
+                            </div>
+                            <div class="form-group">
+                                <label for="ref2Title">Title:</label>
+                                <input type="text" id="ref2Title" name="ref2Title" class="input-field" placeholder="High School Teacher">
+                            </div>
+                            <div class="form-group">
+                                <label for="ref2Organization">Organization:</label>
+                                <input type="text" id="ref2Organization" name="ref2Organization" class="input-field" placeholder="XYZ High School">
+                            </div>
+                            <div class="form-group">
+                                <label for="ref2Relationship">Relationship to You:</label>
+                                <input type="text" id="ref2Relationship" name="ref2Relationship" class="input-field" placeholder="Marketing Teacher">
+                            </div>
+                            <div class="form-group">
+                                <label for="ref2Phone">Phone Number:</label>
+                                <input type="tel" id="ref2Phone" name="ref2Phone" class="input-field" placeholder="555-987-6543">
+                            </div>
+                            <div class="form-group">
+                                <label for="ref2Email">Email Address:</label>
+                                <input type="email" id="ref2Email" name="ref2Email" class="input-field" placeholder="jane.smith@example.com">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
+                        <h3 class="text-xl sm:text-2xl font-bold py-3 section-header">
+                            Reference 3
+                        </h3>
+                        <div class="p-4">
+                            <div class="form-group">
+                                <label for="ref3Name">Full Name:</label>
+                                <input type="text" id="ref3Name" name="ref3Name" class="input-field" placeholder="Mike Johnson">
+                            </div>
+                            <div class="form-group">
+                                <label for="ref3Title">Title:</label>
+                                <input type="text" id="ref3Title" name="ref3Title" class="input-field" placeholder="Volunteer Coordinator">
+                            </div>
+                            <div class="form-group">
+                                <label for="ref3Organization">Organization:</label>
+                                <input type="text" id="ref3Organization" name="ref3Organization" class="input-field" placeholder="Community Outreach Center">
+                            </div>
+                            <div class="form-group">
+                                <label for="ref3Relationship">Relationship to You:</label>
+                                <input type="text" id="ref3Relationship" name="ref3Relationship" class="input-field" placeholder="Volunteer Supervisor">
+                            </div>
+                            <div class="form-group">
+                                <label for="ref3Email">Email Address:</label>
+                                <input type="email" id="ref3Email" name="ref3Email" class="input-field" placeholder="mike.johnson@example.com">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="downloadReferencesBtn" class="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Download References as Image
+                </button>
+                <p id="downloadReferencesStatus" class="mt-4 text-sm text-gray-600 hidden">Generating image...</p>
+            </div>
+
+            <div id="interview-practice-questions-section" class="tab-content">
+                <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-700 mb-6">Interview Practice Questions</h2>
+                <p class="text-lg sm:text-xl text-gray-600 mb-8">
+                    Click the button below to generate 5 random interview questions and practice your answers!
+                </p>
+
+                <p class="text-base text-gray-700 mb-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <span class="font-bold">Directions:</span> Click the "Generate 5 Questions" button to get a new set of interview questions. For each question, type your answer in the provided box. Aim for responses that are detailed and demonstrate your understanding, skills, and experiences.
+                </p>
+
+                <button id="generatePracticeQuestionsBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Generate 5 Questions
+                </button>
+
+                <div id="practice-question-container" class="mt-10 space-y-6 text-left">
+                    </div>
+
+                <button id="getPracticeFeedbackBtn" class="mt-8 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                    Get Feedback on My Answers
+                </button>
+
+                <div id="practice-feedback-area" class="mt-10 p-6 bg-yellow-50 rounded-lg border border-yellow-200 text-left hidden">
+                    <h2 class="text-xl font-bold text-yellow-800 mb-4">Feedback:</h2>
+                    <div id="practice-feedback-content" class="text-gray-800">
+                        </div>
+                    <div id="practice-feedback-loading" class="text-gray-600 mt-4 hidden">
+                        <span class="loading-spinner"></span> Generating feedback...
+                    </div>
+                </div>
+
+                <button id="downloadInterviewPracticeQuestionsBtn" class="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Download Interview Practice Questions as Image
+                </button>
+                <p id="downloadInterviewPracticeQuestionsStatus" class="mt-4 text-sm text-gray-600 hidden">Generating image...</p>
+            </div>
+
+            <div id="questions-to-ask-section" class="tab-content">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-blue-700 mb-6 leading-tight">
+                    Questions to Ask the Interviewer
+                </h1>
+
+                <p class="text-base text-gray-700 mb-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <span class="font-bold">Directions:</span> It's important to ask thoughtful questions at the end of an interview. This shows your interest and helps you learn more about the role and company. Below are some example questions. Use the spaces provided to write down 5 questions you want to ask your interviewer. Focus on questions that demonstrate your engagement, curiosity, and understanding of the role or company. Avoid questions that can be easily answered by a quick search on the company's website.
+                </p>
+
+                <div class="mt-10 space-y-8 text-left">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Example Questions:</h2>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 mb-8">
+                        <li>What does a typical day look like for someone in this role?</li>
+                        <li>How would you describe the team culture here?</li>
+                        <li>What are the next steps in the hiring process?</li>
+                    </ul>
+
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Your Questions:</h2>
+                    <div class="space-y-6">
+                        <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
+                            <div class="mb-3">
+                                <label for="askQuestion-1" class="block text-lg font-semibold text-gray-800 mb-1">1. Your Question:</label>
+                                <textarea id="askQuestion-1" class="input-field min-h-[60px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your question here..."></textarea>
+                            </div>
+                            <div>
+                                <label for="askExplanation-1" class="block text-sm font-medium text-gray-600 mb-1">Why ask this question?</label>
+                                <textarea id="askExplanation-1" class="input-field min-h-[40px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Explain your reason for asking this question..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
+                            <div class="mb-3">
+                                <label for="askQuestion-2" class="block text-lg font-semibold text-gray-800 mb-1">2. Your Question:</label>
+                                <textarea id="askQuestion-2" class="input-field min-h-[60px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your question here..."></textarea>
+                            </div>
+                            <div>
+                                <label for="askExplanation-2" class="block text-sm font-medium text-gray-600 mb-1">Why ask this question?</label>
+                                <textarea id="askExplanation-2" class="input-field min-h-[40px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Explain your reason for asking this question..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
+                            <div class="mb-3">
+                                <label for="askQuestion-3" class="block text-lg font-semibold text-gray-800 mb-1">3. Your Question:</label>
+                                <textarea id="askQuestion-3" class="input-field min-h-[60px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your question here..."></textarea>
+                            </div>
+                            <div>
+                                <label for="askExplanation-3" class="block text-sm font-medium text-gray-600 mb-1">Why ask this question?</label>
+                                <textarea id="askExplanation-3" class="input-field min-h-[40px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Explain your reason for asking this question..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
+                            <div class="mb-3">
+                                <label for="askQuestion-4" class="block text-lg font-semibold text-gray-800 mb-1">4. Your Question:</label>
+                                <textarea id="askQuestion-4" class="input-field min-h-[60px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your question here..."></textarea>
+                            </div>
+                            <div>
+                                <label for="askExplanation-4" class="block text-sm font-medium text-gray-600 mb-1">Why ask this question?</label>
+                                <textarea id="askExplanation-4" class="input-field min-h-[40px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Explain your reason for asking this question..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
+                            <div class="mb-3">
+                                <label for="askQuestion-5" class="block text-lg font-semibold text-gray-800 mb-1">5. Your Question:</label>
+                                <textarea id="askQuestion-5" class="input-field min-h-[60px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your question here..."></textarea>
+                            </div>
+                            <div>
+                                <label for="askExplanation-5" class="block text-sm font-medium text-gray-600 mb-1">Why ask this question?</label>
+                                <textarea id="askExplanation-5" class="input-field min-h-[40px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Explain your reason for asking this question..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
+                        <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Reflection:</h2>
+                        <div class="mb-3">
+                            <label for="askImportance-question" class="block text-lg font-semibold text-gray-800 mb-1">Why is it important to come prepared with questions to ask the interviewer?</label>
+                            <textarea id="askImportance-question" class="input-field min-h-[100px]" placeholder="Type your answer here..."></textarea>
+                        </div>
+                    </div>
+
+                    <button id="getQuestionsToAskFeedbackBtn" class="mt-8 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">
+                        Get AI Feedback on My Questions ✨
+                    </button>
+
+                    <div id="questions-to-ask-feedback-area" class="mt-10 p-6 bg-yellow-50 rounded-lg border border-yellow-200 text-left hidden">
+                        <h2 class="text-xl font-bold text-yellow-800 mb-4">AI Feedback:</h2>
+                        <div id="questions-to-ask-feedback-content" class="text-gray-800">
+                            </div>
+                        <div id="questions-to-ask-feedback-loading" class="text-gray-600 mt-4 hidden">
+                            <span class="loading-spinner"></span> Generating feedback...
+                        </div>
+                    </div>
+
+                    <button id="downloadQuestionsToAskBtn" class="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                        Download as Image
+                    </button>
+                    <p id="downloadQuestionsToAskStatus" class="mt-4 text-sm text-gray-600 hidden">Generating image...</p>
+                </div>
+            </div>
+
+            <div id="illegal-questions-section" class="tab-content">
+                <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-700 mb-6">Understanding Illegal Interview Questions</h2>
+                <p class="text-base text-gray-700 mb-8 p-4 bg-red-50 rounded-lg border border-red-200">
+                    <span class="font-bold">Directions:</span> During a job interview, certain questions are legally prohibited. These questions often touch on personal characteristics that are protected by law. Review the examples of illegal questions below. Then, in the space provided, explain why these types of questions are considered illegal and unfair.
+                </p>
+
+                <div class="mt-10 space-y-8 text-left">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Examples of Illegal Questions:</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 mb-8">
+                        <li>"How old are you?" or "What year did you graduate high school?"</li>
+                        <li>"What is your ethnic background?" or "Where were you born?"</li>
+                        <li>"What religious holidays do you observe?" or "Are you a member of a church?"</li>
+                        <li>"Are you married?" or "Do you plan on having children?"</li>
+                        <li>"Do you have any disabilities?" or "How many sick days did you take last year?"</li>
+                    </ul>
+
+                    <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
+                        <div class="mb-3">
+                            <label for="illegal-explanation" class="block text-lg font-semibold text-gray-800 mb-1">
+                                Why are the types of questions listed above considered illegal in a job interview?
+                            </label>
+                            <textarea id="illegal-explanation" class="input-field min-h-[150px]" placeholder="Type your explanation here, focusing on why these questions are unfair and prohibited by law..."></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="downloadIllegalQuestionsBtn" class="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Download Illegal Questions as Image
+                </button>
+                <p id="downloadIllegalQuestionsStatus" class="mt-4 text-sm text-gray-600 hidden">Generating image...</p>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script type="module">
-        const downloadBtn = document.getElementById('downloadBtn');
-        const worksheetContent = document.getElementById('worksheet-content');
-        const downloadStatus = document.getElementById('downloadStatus');
-        const getFeedbackBtn = document.getElementById('getFeedbackBtn');
-        const feedbackArea = document.getElementById('feedback-area');
-        const feedbackContent = document.getElementById('feedback-content');
-        const feedbackLoading = document.getElementById('feedback-loading');
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
 
-        /**
-         * Downloads the content of the worksheet as a PNG image.
-         */
-        async function downloadWorksheetAsImage() {
-            downloadBtn.disabled = true;
-            downloadStatus.classList.remove('hidden');
+            // Function to handle tab switching
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetTabId = tab.dataset.tab;
 
-            try {
-                // Use html2canvas to capture the content of the worksheet-content div
-                const canvas = await html2canvas(worksheetContent, {
-                    scale: 2, // Increase scale for better resolution
-                    useCORS: true, // Enable cross-origin images if any (though none are used here)
-                    logging: false // Disable logging for cleaner console
+                    // Deactivate all tabs and hide all content
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    // Activate the clicked tab and show its content
+                    tab.classList.add('active');
+                    document.getElementById(targetTabId).classList.add('active');
                 });
-
-                // Convert the canvas to a data URL (PNG format)
-                const imageDataUrl = canvas.toDataURL('image/png');
-
-                // Create a temporary anchor element to trigger the download
-                const a = document.createElement('a');
-                a.href = imageDataUrl;
-                a.download = 'questions_for_interviewer_responses.png'; // Set the filename for the download
-
-                // Programmatically click the anchor to trigger the download
-                document.body.appendChild(a); // Append to body (required for Firefox)
-                a.click();
-                document.body.removeChild(a); // Remove the temporary anchor
-
-                downloadStatus.textContent = 'Download complete!';
-            } catch (error) {
-                console.error('Error generating or downloading image:', error);
-                downloadStatus.textContent = 'Download failed. Please try again.';
-            } finally {
-                downloadBtn.disabled = false;
-                setTimeout(() => {
-                    downloadStatus.classList.add('hidden');
-                    downloadStatus.textContent = 'Generating image...'; // Reset text for next time
-                }, 3000);
-            }
-        }
-
-        /**
-         * Gathers user's questions and explanations and sends them to Gemini API for feedback.
-         */
-        async function getAIQuestionsFeedback() {
-            feedbackArea.classList.remove('hidden');
-            feedbackContent.innerHTML = '';
-            feedbackLoading.classList.remove('hidden');
-            getFeedbackBtn.disabled = true;
-
-            const userQuestions = [];
-            for (let i = 1; i <= 5; i++) {
-                const questionTextarea = document.getElementById(`question-${i}`);
-                const explanationTextarea = document.getElementById(`explanation-${i}`);
-                userQuestions.push({
-                    question: questionTextarea?.value || '',
-                    explanation: explanationTextarea?.value || ''
-                });
-            }
-
-            const reflection = document.getElementById('importance-question')?.value || '';
-
-            let prompt = "Please provide constructive feedback on the following interview questions and their explanations. Evaluate their thoughtfulness, relevance, and whether they avoid easily searchable information. Suggest improvements for each question and the overall reflection. Format the feedback clearly.\n\n";
-
-            userQuestions.forEach((item, index) => {
-                prompt += `Question ${index + 1}: ${item.question}\n`;
-                prompt += `Explanation ${index + 1}: ${item.explanation || "[No explanation provided]"}\n\n`;
             });
 
-            prompt += `Overall Reflection: ${reflection || "[No reflection provided]"}\n`;
+            // Set the first tab as active by default
+            if (tabs.length > 0 && tabContents.length > 0) {
+                tabs[0].classList.add('active');
+                tabContents[0].classList.add('active');
+            }
 
-            try {
-                let chatHistory = [];
-                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-                const payload = { contents: chatHistory };
-                const apiKey = ""; // Canvas will provide this at runtime
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+            // --- Career Assessments Download Logic ---
+            const downloadCareerAssessmentsBtn = document.getElementById('downloadCareerAssessmentsBtn');
+            const careerAssessmentsSection = document.getElementById('career-assessments-section');
+            const downloadCareerAssessmentsStatus = document.getElementById('downloadCareerAssessmentsStatus');
+
+            if (downloadCareerAssessmentsBtn) {
+                downloadCareerAssessmentsBtn.addEventListener('click', async () => {
+                    downloadCareerAssessmentsBtn.disabled = true;
+                    downloadCareerAssessmentsStatus.classList.remove('hidden');
+                    downloadCareerAssessmentsStatus.textContent = 'Generating image...';
+
+                    try {
+                        const canvas = await html2canvas(careerAssessmentsSection, {
+                            scale: 2,
+                            useCORS: true,
+                            logging: false
+                        });
+                        const imageDataUrl = canvas.toDataURL('image/png');
+                        const a = document.createElement('a');
+                        a.href = imageDataUrl;
+                        a.download = 'career_assessments_responses.png';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        downloadCareerAssessmentsStatus.textContent = 'Download complete!';
+                    } catch (error) {
+                        console.error('Error generating or downloading image for Career Assessments:', error);
+                        downloadCareerAssessmentsStatus.textContent = 'Download failed. Please try again.';
+                    } finally {
+                        downloadCareerAssessmentsBtn.disabled = false;
+                        setTimeout(() => {
+                            downloadCareerAssessmentsStatus.classList.add('hidden');
+                            downloadCareerAssessmentsStatus.textContent = 'Generating image...';
+                        }, 3000);
+                    }
+                });
+            }
+
+            // --- Career Info Worksheet Download Logic ---
+            const downloadCareerInfoBtn = document.getElementById('downloadCareerInfoBtn');
+            const careerInfoWorksheetSection = document.getElementById('career-info-worksheet-section');
+            const downloadCareerInfoStatus = document.getElementById('downloadCareerInfoStatus');
+
+            if (downloadCareerInfoBtn) {
+                downloadCareerInfoBtn.addEventListener('click', async () => {
+                    downloadCareerInfoBtn.disabled = true;
+                    downloadCareerInfoStatus.classList.remove('hidden');
+                    downloadCareerInfoStatus.textContent = 'Generating image...';
+
+                    try {
+                        const canvas = await html2canvas(careerInfoWorksheetSection, {
+                            scale: 2,
+                            useCORS: true,
+                            logging: false
+                        });
+                        const imageDataUrl = canvas.toDataURL('image/png');
+                        const a = document.createElement('a');
+                        a.href = imageDataUrl;
+                        a.download = 'career_info_responses.png';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        downloadCareerInfoStatus.textContent = 'Download complete!';
+                    } catch (error) {
+                        console.error('Error generating or downloading image for Career Info:', error);
+                        downloadCareerInfoStatus.textContent = 'Download failed. Please try again.';
+                    } finally {
+                        downloadCareerInfoBtn.disabled = false;
+                        setTimeout(() => {
+                            downloadCareerInfoStatus.classList.add('hidden');
+                            downloadCareerInfoStatus.textContent = 'Generating image...';
+                        }, 3000);
+                    }
+                });
+            }
+
+
+            // --- Illegal Interview Questions Download Logic ---
+            const downloadIllegalQuestionsBtn = document.getElementById('downloadIllegalQuestionsBtn');
+            const illegalQuestionsSection = document.getElementById('illegal-questions-section');
+            const downloadIllegalQuestionsStatus = document.getElementById('downloadIllegalQuestionsStatus');
+
+            if (downloadIllegalQuestionsBtn) {
+                downloadIllegalQuestionsBtn.addEventListener('click', async () => {
+                    downloadIllegalQuestionsBtn.disabled = true;
+                    downloadIllegalQuestionsStatus.classList.remove('hidden');
+                    downloadIllegalQuestionsStatus.textContent = 'Generating image...';
+
+                    try {
+                        const canvas = await html2canvas(illegalQuestionsSection, {
+                            scale: 2,
+                            useCORS: true,
+                            logging: false
+                        });
+                        const imageDataUrl = canvas.toDataURL('image/png');
+                        const a = document.createElement('a');
+                        a.href = imageDataUrl;
+                        a.download = 'illegal_questions_responses.png';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        downloadIllegalQuestionsStatus.textContent = 'Download complete!';
+                    } catch (error) {
+                        console.error('Error generating or downloading image for Illegal Questions:', error);
+                        downloadIllegalQuestionsStatus.textContent = 'Download failed. Please try again.';
+                    } finally {
+                        downloadIllegalQuestionsBtn.disabled = false;
+                        setTimeout(() => {
+                            downloadIllegalQuestionsStatus.classList.add('hidden');
+                            downloadIllegalQuestionsStatus.textContent = 'Generating image...';
+                        }, 3000);
+                    }
+                });
+            }
+
+            // --- References List Download Logic ---
+            const downloadReferencesBtn = document.getElementById('downloadReferencesBtn');
+            const referencesSection = document.getElementById('references-section');
+            const downloadReferencesStatus = document.getElementById('downloadReferencesStatus');
+
+            if (downloadReferencesBtn) {
+                downloadReferencesBtn.addEventListener('click', async () => {
+                    downloadReferencesBtn.disabled = true;
+                    downloadReferencesStatus.classList.remove('hidden');
+                    downloadReferencesStatus.textContent = 'Generating image...';
+
+                    try {
+                        const canvas = await html2canvas(referencesSection, {
+                            scale: 2,
+                            useCORS: true,
+                            logging: false
+                        });
+                        const imageDataUrl = canvas.toDataURL('image/png');
+                        const a = document.createElement('a');
+                        a.href = imageDataUrl;
+                        a.download = 'professional_references.png';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        downloadReferencesStatus.textContent = 'Download complete!';
+                    } catch (error) {
+                        console.error('Error generating or downloading image for References:', error);
+                        downloadReferencesStatus.textContent = 'Download failed. Please try again.';
+                    } finally {
+                        downloadReferencesBtn.disabled = false;
+                        setTimeout(() => {
+                            downloadReferencesStatus.classList.add('hidden');
+                            downloadReferencesStatus.textContent = 'Generating image...';
+                        }, 3000);
+                    }
+                });
+            }
+
+
+            // --- Interview Practice Questions Logic (from interview_question_generator_html) ---
+            const interviewQuestions = [
+                'Tell me about yourself.', 'Why are you interested in this specific role?', 'What are your greatest strengths?',
+                'What are your weaknesses?', 'Describe a challenging situation you faced at work/school and how you overcame it.',
+                'Where do you see yourself in 5 years?', 'How do you handle pressure and stress?',
+                'Give an example of a time you worked collaboratively in a team.', 'What motivates you to excel in your work?',
+                'How do you stay updated with industry trends and knowledge?', 'Why should we hire you?',
+                'What is your greatest professional achievement?', 'Describe your ideal company culture.',
+                'How do you prioritize your work?', 'Tell me about a time you failed and what you learned from it.',
+                'What are your salary expectations?', 'How do you define success?',
+                'What are your hobbies outside of work/school?', 'Describe a time you had to deal with a difficult person.',
+                'What do you know about our company/organization?', 'Why did you choose your major/field of study?',
+                'How do you handle constructive criticism?', 'What is your leadership style?',
+                'Tell me about a time you had to adapt to a change.', 'What are your long-term career goals?',
+                'How do you manage your time effectively?', 'What kind of work environment do you thrive in?',
+                'What questions do you have for me?', 'How do you measure your own performance?'
+            ];
+
+            const generatePracticeQuestionsBtn = document.getElementById('generatePracticeQuestionsBtn');
+            const getPracticeFeedbackBtn = document.getElementById('getPracticeFeedbackBtn');
+            const practiceQuestionContainer = document.getElementById('practice-question-container');
+            const practiceFeedbackArea = document.getElementById('practice-feedback-area');
+            const practiceFeedbackContent = document.getElementById('practice-feedback-content');
+            const practiceFeedbackLoading = document.getElementById('practice-feedback-loading');
+
+            function getRandomQuestionsForPractice(questionsArray, numQuestions) {
+                const shuffled = [...questionsArray];
+                for (let i = shuffled.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                }
+                return shuffled.slice(0, numQuestions);
+            }
+
+            function renderPracticeQuestions() {
+                practiceQuestionContainer.innerHTML = '';
+                practiceFeedbackArea.classList.add('hidden');
+                practiceFeedbackContent.innerHTML = '';
+
+                const randomQuestions = getRandomQuestionsForPractice(interviewQuestions, 5);
+
+                randomQuestions.forEach((question, index) => {
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'mb-6';
+
+                    const questionP = document.createElement('p');
+                    questionP.className = 'text-lg font-semibold text-gray-800 mb-2';
+                    questionP.textContent = `${index + 1}. ${question}`;
+
+                    const answerTextarea = document.createElement('textarea');
+                    answerTextarea.id = `practice-answer-${index}`; // Unique ID for combined document
+                    answerTextarea.className = 'input-field min-h-[100px] shadow-sm focus:ring-blue-500 focus:border-blue-500';
+                    answerTextarea.placeholder = 'Type your answer here...';
+                    answerTextarea.dataset.question = question; // Store the question with the textarea
+
+                    questionDiv.appendChild(questionP);
+                    questionDiv.appendChild(answerTextarea);
+                    practiceQuestionContainer.appendChild(questionDiv);
+                });
+            }
+
+            async function getPracticeFeedback() {
+                practiceFeedbackArea.classList.remove('hidden');
+                practiceFeedbackContent.innerHTML = '';
+                practiceFeedbackLoading.classList.remove('hidden');
+
+                const answers = [];
+                for (let i = 0; i < 5; i++) {
+                    const textarea = document.getElementById(`practice-answer-${i}`); // Use unique ID
+                    if (textarea) {
+                        answers.push({
+                            question: textarea.dataset.question,
+                            answer: textarea.value
+                        });
+                    }
+                }
+
+                let prompt = "Provide constructive feedback on the following interview answers. Focus on clarity, completeness, relevance, and professionalism. Suggest areas for improvement. Format the feedback clearly for each question.\n\n";
+                answers.forEach((item, index) => {
+                    prompt += `Question ${index + 1}: ${item.question}\n`;
+                    prompt += `Your Answer: ${item.answer || "[No answer provided]"}\n\n`;
                 });
 
-                const result = await response.json();
+                try {
+                    // Gemini API call
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // Canvas will provide this at runtime
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-
-                    // Format the feedback for display
-                    const feedbackLines = text.split('\n');
-                    let formattedFeedback = '';
-                    let inList = false;
-
-                    feedbackLines.forEach(line => {
-                        const trimmedLine = line.trim();
-                        if (trimmedLine.startsWith('Question ') && trimmedLine.includes(':') || trimmedLine.startsWith('Overall Reflection:')) {
-                            if (inList) { // Close previous list if any
-                                formattedFeedback += '</ul>';
-                                inList = false;
-                            }
-                            formattedFeedback += `<h3 class="text-lg font-semibold text-gray-800 mt-4 mb-2">${trimmedLine}</h3>`;
-                        } else if (trimmedLine.startsWith('- ')) {
-                            if (!inList) { // Start new list
-                                formattedFeedback += '<ul class="list-disc list-inside text-gray-700 mb-2">';
-                                inList = true;
-                            }
-                            formattedFeedback += `<li class="ml-4">${trimmedLine.substring(2)}</li>`;
-                        } else if (trimmedLine !== '') {
-                            if (inList) { // Close previous list if any
-                                formattedFeedback += '</ul>';
-                                inList = false;
-                            }
-                            formattedFeedback += `<p class="text-gray-700 mb-1">${trimmedLine}</p>`;
-                        }
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
                     });
 
-                    if (inList) { // Close any open list at the end
-                        formattedFeedback += '</ul>';
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+
+                        // Apply styling to feedback content
+                        const feedbackLines = text.split('\n');
+                        let formattedFeedback = '';
+                        let inList = false;
+
+                        feedbackLines.forEach(line => {
+                            const trimmedLine = line.trim();
+                            if (trimmedLine.startsWith('Question ') && trimmedLine.includes(':')) {
+                                if (inList) { // Close previous list if any
+                                    formattedFeedback += '</ul>';
+                                    inList = false;
+                                }
+                                formattedFeedback += `<h3 class="text-lg font-semibold text-gray-800 mt-4 mb-2">${trimmedLine}</h3>`;
+                            } else if (trimmedLine.startsWith('- ')) {
+                                if (!inList) { // Start new list
+                                    formattedFeedback += '<ul class="list-disc list-inside text-gray-700 mb-2">';
+                                    inList = true;
+                                }
+                                formattedFeedback += `<li class="ml-4">${trimmedLine.substring(2)}</li>`;
+                            } else if (trimmedLine !== '') {
+                                if (inList) { // Close previous list if any
+                                    formattedFeedback += '</ul>';
+                                    inList = false;
+                                }
+                                formattedFeedback += `<p class="text-gray-700 mb-1">${trimmedLine}</p>`;
+                            }
+                        });
+
+                        if (inList) { // Close any open list at the end
+                            formattedFeedback += '</ul>';
+                        }
+                        practiceFeedbackContent.innerHTML = formattedFeedback;
+
+                    } else {
+                        practiceFeedbackContent.textContent = "Could not generate feedback. Please try again.";
+                        console.error("Unexpected API response structure:", result);
                     }
-                    feedbackContent.innerHTML = formattedFeedback;
-
-                } else {
-                    feedbackContent.textContent = "Could not generate feedback. Please try again.";
-                    console.error("Unexpected API response structure:", result);
+                } catch (error) {
+                    practiceFeedbackContent.textContent = "An error occurred while generating feedback. Please check your network connection or try again later.";
+                    console.error("Error fetching feedback:", error);
+                } finally {
+                    practiceFeedbackLoading.classList.add('hidden');
                 }
-            } catch (error) {
-                feedbackContent.textContent = "An error occurred while generating feedback. Please check your network connection or try again later.";
-                console.error("Error fetching feedback:", error);
-            } finally {
-                feedbackLoading.classList.add('hidden');
-                getFeedbackBtn.disabled = false;
             }
-        }
 
+            // Event Listeners for Interview Practice Questions
+            generatePracticeQuestionsBtn.addEventListener('click', renderPracticeQuestions);
+            getPracticeFeedbackBtn.addEventListener('click', getPracticeFeedback);
 
-        // Add event listeners
-        downloadBtn.addEventListener('click', downloadWorksheetAsImage);
-        getFeedbackBtn.addEventListener('click', getAIQuestionsFeedback);
+            // Initial render of practice questions when the page loads
+            renderPracticeQuestions();
+
+            // --- Interview Practice Questions Download Logic ---
+            const downloadInterviewPracticeQuestionsBtn = document.getElementById('downloadInterviewPracticeQuestionsBtn');
+            const interviewPracticeQuestionsSection = document.getElementById('interview-practice-questions-section');
+            const downloadInterviewPracticeQuestionsStatus = document.getElementById('downloadInterviewPracticeQuestionsStatus');
+
+            if (downloadInterviewPracticeQuestionsBtn) {
+                downloadInterviewPracticeQuestionsBtn.addEventListener('click', async () => {
+                    downloadInterviewPracticeQuestionsBtn.disabled = true;
+                    downloadInterviewPracticeQuestionsStatus.classList.remove('hidden');
+                    downloadInterviewPracticeQuestionsStatus.textContent = 'Generating image...';
+
+                    try {
+                        const canvas = await html2canvas(interviewPracticeQuestionsSection, {
+                            scale: 2,
+                            useCORS: true,
+                            logging: false
+                        });
+                        const imageDataUrl = canvas.toDataURL('image/png');
+                        const a = document.createElement('a');
+                        a.href = imageDataUrl;
+                        a.download = 'interview_practice_responses.png';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        downloadInterviewPracticeQuestionsStatus.textContent = 'Download complete!';
+                    } catch (error) {
+                        console.error('Error generating or downloading image for Interview Practice Questions:', error);
+                        downloadInterviewPracticeQuestionsStatus.textContent = 'Download failed. Please try again.';
+                    } finally {
+                        downloadInterviewPracticeQuestionsBtn.disabled = false;
+                        setTimeout(() => {
+                            downloadInterviewPracticeQuestionsStatus.classList.add('hidden');
+                            downloadInterviewPracticeQuestionsStatus.textContent = 'Generating image...';
+                        }, 3000);
+                    }
+                });
+            }
+
+            // --- Questions to Ask the Interviewer Download Logic ---
+            const downloadQuestionsToAskBtn = document.getElementById('downloadQuestionsToAskBtn');
+            const questionsToAskSection = document.getElementById('questions-to-ask-section');
+            const downloadQuestionsToAskStatus = document.getElementById('downloadQuestionsToAskStatus');
+            const getQuestionsToAskFeedbackBtn = document.getElementById('getQuestionsToAskFeedbackBtn');
+            const questionsToAskFeedbackArea = document.getElementById('questions-to-ask-feedback-area');
+            const questionsToAskFeedbackContent = document.getElementById('questions-to-ask-feedback-content');
+            const questionsToAskFeedbackLoading = document.getElementById('questions-to-ask-feedback-loading');
+
+            if (downloadQuestionsToAskBtn) {
+                downloadQuestionsToAskBtn.addEventListener('click', async () => {
+                    downloadQuestionsToAskBtn.disabled = true;
+                    downloadQuestionsToAskStatus.classList.remove('hidden');
+                    downloadQuestionsToAskStatus.textContent = 'Generating image...';
+
+                    try {
+                        const canvas = await html2canvas(questionsToAskSection, {
+                            scale: 2,
+                            useCORS: true,
+                            logging: false
+                        });
+                        const imageDataUrl = canvas.toDataURL('image/png');
+                        const a = document.createElement('a');
+                        a.href = imageDataUrl;
+                        a.download = 'questions_for_interviewer_responses.png';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        downloadQuestionsToAskStatus.textContent = 'Download complete!';
+                    } catch (error) {
+                        console.error('Error generating or downloading image for Questions to Ask Interviewer:', error);
+                        downloadQuestionsToAskStatus.textContent = 'Download failed. Please try again.';
+                    } finally {
+                        downloadQuestionsToAskBtn.disabled = false;
+                        setTimeout(() => {
+                            downloadQuestionsToAskStatus.classList.add('hidden');
+                            downloadQuestionsToAskStatus.textContent = 'Generating image...';
+                        }, 3000);
+                    }
+                });
+            }
+
+            async function getAIQuestionsToAskFeedback() {
+                questionsToAskFeedbackArea.classList.remove('hidden');
+                questionsToAskFeedbackContent.innerHTML = '';
+                questionsToAskFeedbackLoading.classList.remove('hidden');
+                getQuestionsToAskFeedbackBtn.disabled = true;
+
+                const userQuestions = [];
+                for (let i = 1; i <= 5; i++) {
+                    const questionTextarea = document.getElementById(`askQuestion-${i}`);
+                    const explanationTextarea = document.getElementById(`askExplanation-${i}`);
+                    userQuestions.push({
+                        question: questionTextarea?.value || '',
+                        explanation: explanationTextarea?.value || ''
+                    });
+                }
+
+                const reflection = document.getElementById('askImportance-question')?.value || '';
+
+                let prompt = "Please provide constructive feedback on the following interview questions and their explanations. Evaluate their thoughtfulness, relevance, and whether they avoid easily searchable information. Suggest improvements for each question and the overall reflection. Format the feedback clearly.\n\n";
+
+                userQuestions.forEach((item, index) => {
+                    prompt += `Question ${index + 1}: ${item.question}\n`;
+                    prompt += `Explanation ${index + 1}: ${item.explanation || "[No explanation provided]"}\n\n`;
+                });
+
+                prompt += `Overall Reflection: ${reflection || "[No reflection provided]"}\n`;
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // Canvas will provide this at runtime
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+
+                        const feedbackLines = text.split('\n');
+                        let formattedFeedback = '';
+                        let inList = false;
+
+                        feedbackLines.forEach(line => {
+                            const trimmedLine = line.trim();
+                            if (trimmedLine.startsWith('Question ') && trimmedLine.includes(':') || trimmedLine.startsWith('Overall Reflection:')) {
+                                if (inList) {
+                                    formattedFeedback += '</ul>';
+                                    inList = false;
+                                }
+                                formattedFeedback += `<h3 class="text-lg font-semibold text-gray-800 mt-4 mb-2">${trimmedLine}</h3>`;
+                            } else if (trimmedLine.startsWith('- ')) {
+                                if (!inList) {
+                                    formattedFeedback += '<ul class="list-disc list-inside text-gray-700 mb-2">';
+                                    inList = true;
+                                }
+                                formattedFeedback += `<li class="ml-4">${trimmedLine.substring(2)}</li>`;
+                            } else if (trimmedLine !== '') {
+                                if (inList) {
+                                    formattedFeedback += '</ul>';
+                                    inList = false;
+                                }
+                                formattedFeedback += `<p class="text-gray-700 mb-1">${trimmedLine}</p>`;
+                            }
+                        });
+
+                        if (inList) {
+                            formattedFeedback += '</ul>';
+                        }
+                        questionsToAskFeedbackContent.innerHTML = formattedFeedback;
+
+                    } else {
+                        questionsToAskFeedbackContent.textContent = "Could not generate feedback. Please try again.";
+                        console.error("Unexpected API response structure:", result);
+                    }
+                } catch (error) {
+                    questionsToAskFeedbackContent.textContent = "An error occurred while generating feedback. Please check your network connection or try again later.";
+                    console.error("Error fetching feedback:", error);
+                } finally {
+                    questionsToAskFeedbackLoading.classList.add('hidden');
+                    getQuestionsToAskFeedbackBtn.disabled = false;
+                }
+            }
+            getQuestionsToAskFeedbackBtn.addEventListener('click', getAIQuestionsToAskFeedback);
+        });
     </script>
 </body>
 </html>
