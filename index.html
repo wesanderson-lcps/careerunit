@@ -1,4 +1,4 @@
-\<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,6 @@
     <title>Comprehensive Career Project Worksheets</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -67,34 +66,15 @@
             padding: 0.25rem; /* Padding inside the container for the segmented look */
             background-color: #e2e8f0; /* Light gray background for the container */
             border-radius: 0.75rem; /* Rounded corners for the container */
+            display: grid; /* Changed from inline-flex to grid */
+            grid-template-columns: repeat(3, 1fr); /* New: 3 columns of equal width */
+            gap: 0.25rem; /* Small gap between segments */
             box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Inner shadow for depth */
             width: 100%; /* Ensure it takes full width for grid */
             max-width: 900px; /* Limit width for better appearance on very wide screens */
             margin-left: auto; /* Center the grid container */
             margin-right: auto; /* Center the grid container */
-
-            /* New: Use flexbox for vertical arrangement of rows */
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Center the rows themselves horizontally */
-            gap: 0.25rem; /* Gap between the two rows */
         }
-
-        .tab-row { /* New class for both top and bottom rows */
-            display: grid; /* Use grid for consistent button sizing */
-            grid-template-columns: repeat(4, 1fr); /* Max 4 columns for all rows */
-            gap: 0.25rem;
-            width: 100%; /* Ensure rows take full width of container */
-        }
-
-        /* Specific centering for the bottom row */
-        .bottom-row-tabs {
-            display: flex; /* Override grid for bottom row to use flex for centering */
-            justify-content: center; /* Center the items horizontally */
-            gap: 0.25rem;
-            width: 100%; /* Ensure it spans the full width to allow centering */
-        }
-
         .tab-button {
             @apply text-gray-700 whitespace-nowrap py-4 px-10 font-semibold text-sm sm:text-base;
             border: none;
@@ -102,8 +82,7 @@
             border-radius: 0.625rem; /* Slightly less rounded than container */
             transition: all 0.2s ease-in-out;
             text-align: center;
-            min-width: unset; /* Remove min-width as flex/grid will handle sizing */
-            flex-grow: 1; /* Allow buttons in flex container to grow */
+            min-width: 120px;
         }
         .tab-button.active {
             @apply text-blue-900;
@@ -137,192 +116,6 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-
-        /* Ram Shack Application Specific Styles */
-        .ram-shack-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            padding: 2.5rem;
-            border-radius: 0.75rem; /* rounded-xl */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        .ram-shack-container h1 {
-            font-size: 2.25rem; /* text-4xl */
-            font-weight: 700; /* font-bold */
-            color: #1f2937; /* text-gray-900 */
-            margin-bottom: 1.5rem;
-            text-align: center;
-        }
-        .ram-shack-container h2 {
-            font-size: 1.5rem; /* text-2xl */
-            font-weight: 600; /* font-semibold */
-            color: #374151; /* text-gray-800 */
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            border-bottom: 2px solid #e5e7eb; /* border-b-2 border-gray-200 */
-            padding-bottom: 0.5rem;
-        }
-        .ram-shack-container h3 {
-            font-size: 1.25rem; /* text-xl */
-            font-weight: 600; /* font-semibold */
-            color: #4b5563; /* text-gray-700 */
-            margin-top: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-        .ram-shack-container .form-group {
-            margin-bottom: 1rem;
-        }
-        .ram-shack-container label {
-            display: block;
-            font-weight: 500; /* font-medium */
-            color: #374151; /* text-gray-800 */
-            margin-bottom: 0.5rem;
-        }
-        .ram-shack-container input[type="text"],
-        .ram-shack-container input[type="email"],
-        .ram-shack-container input[type="tel"],
-        .ram-shack-container input[type="date"],
-        .ram-shack-container input[type="number"],
-        .ram-shack-container textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #d1d5db; /* border-gray-300 */
-            border-radius: 0.375rem; /* rounded-md */
-            font-size: 1rem;
-            color: #1f2937; /* text-gray-900 */
-            box-sizing: border-box;
-            transition: border-color 0.2s ease-in-out;
-        }
-        .ram-shack-container input[type="text"]:focus,
-        .ram-shack-container input[type="email"]:focus,
-        .ram-shack-container input[type="tel"]:focus,
-        .ram-shack-container input[type="date"]:focus,
-        .ram-shack-container input[type="number"]:focus,
-        .ram-shack-container textarea:focus {
-            outline: none;
-            border-color: #4f46e5; /* indigo-600 */
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2); /* ring-indigo-200 */
-        }
-        .ram-shack-container textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-        .ram-shack-container .checkbox-group {
-            display: flex;
-            align-items: center; /* Align items to the center by default */
-            margin-top: 0.5rem;
-        }
-        .ram-shack-container .checkbox-group.align-start {
-            align-items: flex-start; /* For disclaimers, align to top */
-        }
-        .ram-shack-container .checkbox-group input[type="checkbox"],
-        .ram-shack-container .checkbox-group input[type="radio"] {
-            margin-right: 0.5rem;
-            flex-shrink: 0; /* Prevent checkbox/radio from shrinking */
-        }
-        .ram-shack-container .disclaimer-text { /* New class for disclaimer text */
-            font-size: 0.875rem; /* text-sm */
-            color: #4b5563; /* text-gray-700 */
-            margin-top: 0; /* Reset margin from previous .disclaimer */
-            padding-top: 0; /* Reset padding from previous .disclaimer */
-            border-top: none; /* Reset border from previous .disclaimer */
-        }
-        /* Styles for the signature canvas */
-        #signatureCanvas {
-            border: 1px solid #d1d5db; /* border-gray-300 */
-            border-radius: 0.375rem; /* rounded-md */
-            background-color: #f9fafb; /* gray-50 */
-            cursor: crosshair;
-            touch-action: none; /* Prevent scrolling on touch */
-            width: 100%; /* Make canvas responsive */
-            height: 150px; /* Fixed height for signature area */
-        }
-        .clear-button {
-            margin-top: 0.5rem;
-            padding: 0.5rem 1rem;
-            background-color: #ef4444; /* red-500 */
-            color: white;
-            border: none;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-        }
-        .clear-button:hover {
-            background-color: #dc2626; /* red-600 */
-        }
-        .submit-button {
-            margin-top: 2rem;
-            padding: 0.75rem 1.5rem;
-            background-color: #4f46e5; /* indigo-600 */
-            color: white;
-            font-weight: 600;
-            border: none;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-            width: 100%; /* Make button full width */
-        }
-        .submit-button:hover {
-            background-color: #4338ca; /* indigo-700 */
-        }
-        .thank-you {
-            text-align: center;
-            margin-top: 2rem;
-            font-size: 1.125rem; /* text-lg */
-            color: #374151; /* text-gray-800 */
-            font-weight: 500;
-        }
-        .submit-message {
-            text-align: center;
-            margin-top: 1rem;
-            font-size: 1rem;
-            color: #10b981; /* green-500 */
-            font-weight: 500;
-        }
-        .warning-message {
-            text-align: center;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-            color: #ef4444; /* red-500 */
-            font-weight: 500;
-        }
-        .download-section {
-            margin-top: 1.5rem;
-            padding: 1rem;
-            background-color: #e0f2fe; /* light blue */
-            border: 1px solid #90cdf4;
-            border-radius: 0.5rem;
-            text-align: center;
-        }
-        .download-section p {
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-            color: #2b6cb0; /* darker blue */
-        }
-        .download-button {
-            padding: 0.75rem 1.5rem;
-            background-color: #22c55e; /* green-500 */
-            color: white;
-            font-weight: 600;
-            border: none;
-            border-radius: 0.375rem;
-            cursor: pointer;
-            transition: background-color 0.2s ease-in-out;
-            margin-top: 1rem;
-        }
-        .download-button:hover {
-            background-color: #16a34a; /* green-600 */
-        }
-        .download-status {
-            margin-top: 0.5rem;
-            font-size: 0.875rem;
-            color: #4b5563;
-        }
-        /* Styles to hide form elements that should NOT be in the image capture */
-        .hide-for-capture {
-            display: none !important;
-        }
     </style>
 </head>
 <body class="p-4 sm:p-6 md:p-8 lg:p-10 bg-gray-50 min-h-screen flex items-center justify-center">
@@ -334,17 +127,12 @@
 
         <div class="mb-6">
             <nav class="tab-nav-container" aria-label="Tabs">
-                <div class="tab-row top-row-tabs">
-                    <button class="tab-button active" data-tab="career-assessments-section">Career Assessments</button>
-                    <button class="tab-button" data-tab="career-info-worksheet-section">Career Info Worksheet</button>
-                    <button class="tab-button" data-tab="references-section">References List</button>
-                    <button class="tab-button" data-tab="interview-practice-questions-section">Interview Practice Questions</button>
-                </div>
-                <div class="tab-row bottom-row-tabs">
-                    <button class="tab-button" data-tab="questions-to-ask-section">Questions for Interviewer</button>
-                    <button class="tab-button" data-tab="illegal-questions-section">Illegal Interview Questions</button>
-                    <button class="tab-button" data-tab="ram-shack-application-section">Ram Shack Application</button>
-                </div>
+                <button class="tab-button active" data-tab="career-assessments-section">Career Assessments</button>
+                <button class="tab-button" data-tab="career-info-worksheet-section">Career Info Worksheet</button>
+                <button class="tab-button" data-tab="references-section">References List</button>
+                <button class="tab-button" data-tab="interview-practice-questions-section">Interview Practice Questions</button>
+                <button class="tab-button" data-tab="questions-to-ask-section">Questions for Interviewer</button>
+                <button class="tab-button" data-tab="illegal-questions-section">Illegal Interview Questions</button>
             </nav>
         </div>
 
@@ -666,7 +454,7 @@
                         <div class="p-4">
                             <div class="form-group">
                                 <label for="ref3Name">Full Name:</label>
-                                <input type="text" id="ref3Name" name="ref3Name" class="input-field" placeholder="Michael Johnson">
+                                <input type="text" id="ref3Name" name="ref3Name" class="input-field" placeholder="Mike Johnson">
                             </div>
                             <div class="form-group">
                                 <label for="ref3Title">Title:</label>
@@ -674,19 +462,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="ref3Organization">Organization:</label>
-                                <input type="text" id="ref3Organization" name="ref3Organization" class="input-field" placeholder="Community Outreach">
+                                <input type="text" id="ref3Organization" name="ref3Organization" class="input-field" placeholder="Community Outreach Center">
                             </div>
                             <div class="form-group">
                                 <label for="ref3Relationship">Relationship to You:</label>
                                 <input type="text" id="ref3Relationship" name="ref3Relationship" class="input-field" placeholder="Volunteer Supervisor">
                             </div>
                             <div class="form-group">
-                                <label for="ref3Phone">Phone Number:</label>
-                                <input type="tel" id="ref3Phone" name="ref3Phone" class="input-field" placeholder="555-444-3333">
-                            </div>
-                            <div class="form-group">
                                 <label for="ref3Email">Email Address:</label>
-                                <input type="email" id="ref3Email" name="ref3Email" class="input-field" placeholder="michael.j@example.com">
+                                <input type="email" id="ref3Email" name="ref3Email" class="input-field" placeholder="mike.johnson@example.com">
                             </div>
                         </div>
                     </div>
@@ -699,172 +483,166 @@
             </div>
 
             <div id="interview-practice-questions-section" class="tab-content">
-                <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-700 mb-6">INTERVIEW PRACTICE QUESTIONS</h2>
-                <p class="text-base sm:text-lg text-gray-700 mb-6">
-                    <span class="font-bold">Directions:</span> Practice answering the following common interview questions. Think about how you would articulate your responses clearly and concisely, highlighting your skills and experiences.
+                <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-700 mb-6">Interview Practice Questions</h2>
+                <p class="text-lg sm:text-xl text-gray-600 mb-8">
+                    Click the button below to generate 5 random interview questions and practice your answers!
                 </p>
 
-                <div class="space-y-8 text-left">
-                    <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
-                        <h3 class="text-xl sm:text-2xl font-bold py-3 section-header">
-                            Question 1: Tell me about yourself.
-                        </h3>
-                        <div class="p-4">
-                            <textarea id="q1-answer" class="input-field min-h-[100px]" placeholder="Your answer..."></textarea>
-                        </div>
+                <p class="text-base text-gray-700 mb-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <span class="font-bold">Directions:</span> Click the "Generate 5 Questions" button to get a new set of interview questions. For each question, type your answer in the provided box. Aim for responses that are detailed and demonstrate your understanding, skills, and experiences.
+                </p>
+
+                <button id="generatePracticeQuestionsBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Generate 5 Questions
+                </button>
+
+                <div id="practice-question-container" class="mt-10 space-y-6 text-left">
                     </div>
 
-                    <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
-                        <h3 class="text-xl sm:text-2xl font-bold py-3 section-header">
-                            Question 2: Why are you interested in this position?
-                        </h3>
-                        <div class="p-4">
-                            <textarea id="q2-answer" class="input-field min-h-[100px]" placeholder="Your answer..."></textarea>
-                        </div>
-                    </div>
+                <button id="getPracticeFeedbackBtn" class="mt-8 bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                    Get Feedback on My Answers
+                </button>
 
-                    <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
-                        <h3 class="text-xl sm:text-2xl font-bold py-3 section-header">
-                            Question 3: What are your strengths?
-                        </h3>
-                        <div class="p-4">
-                            <textarea id="q3-answer" class="input-field min-h-[100px]" placeholder="Your answer..."></textarea>
+                <div id="practice-feedback-area" class="mt-10 p-6 bg-yellow-50 rounded-lg border border-yellow-200 text-left hidden">
+                    <h2 class="text-xl font-bold text-yellow-800 mb-4">Feedback:</h2>
+                    <div id="practice-feedback-content" class="text-gray-800">
                         </div>
-                    </div>
-
-                    <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
-                        <h3 class="text-xl sm:text-2xl font-bold py-3 section-header">
-                            Question 4: What are your weaknesses?
-                        </h3>
-                        <div class="p-4">
-                            <textarea id="q4-answer" class="input-field min-h-[100px]" placeholder="Your answer..."></textarea>
-                        </div>
-                    </div>
-
-                    <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
-                        <h3 class="text-xl sm:text-2xl font-bold py-3 section-header">
-                            Question 5: Where do you see yourself in five years?
-                        </h3>
-                        <div class="p-4">
-                            <textarea id="q5-answer" class="input-field min-h-[100px]" placeholder="Your answer..."></textarea>
-                        </div>
-                    </div>
-
-                    <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
-                        <h3 class="text-xl sm:text-2xl font-bold py-3 section-header">
-                            Question 6: Why should we hire you?
-                        </h3>
-                        <div class="p-4">
-                            <textarea id="q6-answer" class="input-field min-h-[100px]" placeholder="Your answer..."></textarea>
-                        </div>
+                    <div id="practice-feedback-loading" class="text-gray-600 mt-4 hidden">
+                        <span class="loading-spinner"></span> Generating feedback...
                     </div>
                 </div>
 
-                <button id="downloadInterviewPracticeBtn" class="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                    Download Interview Practice as Image
+                <button id="downloadInterviewPracticeQuestionsBtn" class="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                    Download Interview Practice Questions as Image
                 </button>
-                <p id="downloadInterviewPracticeStatus" class="mt-4 text-sm text-gray-600 hidden">Generating image...</p>
+                <p id="downloadInterviewPracticeQuestionsStatus" class="mt-4 text-sm text-gray-600 hidden">Generating image...</p>
             </div>
 
             <div id="questions-to-ask-section" class="tab-content">
-                <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-700 mb-6">QUESTIONS TO ASK THE INTERVIEWER</h2>
-                <p class="text-base sm:text-lg text-gray-700 mb-6">
-                    <span class="font-bold">Directions:</span> Asking thoughtful questions demonstrates your engagement and interest in the role and company. Prepare at least 3-5 questions to ask the interviewer at the end of your interview.
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center text-blue-700 mb-6 leading-tight">
+                    Questions to Ask the Interviewer
+                </h1>
+
+                <p class="text-base text-gray-700 mb-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <span class="font-bold">Directions:</span> It's important to ask thoughtful questions at the end of an interview. This shows your interest and helps you learn more about the role and company. Below are some example questions. Use the spaces provided to write down 5 questions you want to ask your interviewer. Focus on questions that demonstrate your engagement, curiosity, and understanding of the role or company. Avoid questions that can be easily answered by a quick search on the company's website.
                 </p>
 
-                <div class="space-y-6 text-left">
-                    <div class="form-group">
-                        <label for="interviewerQuestion1">Question 1:</label>
-                        <input type="text" id="interviewerQuestion1" class="input-field" placeholder="What does a typical day look like in this role?">
-                    </div>
-                    <div class="form-group">
-                        <label for="interviewerQuestion2">Question 2:</label>
-                        <input type="text" id="interviewerQuestion2" class="input-field" placeholder="What are the biggest challenges someone in this role might face?">
-                    </div>
-                    <div class="form-group">
-                        <label for="interviewerQuestion3">Question 3:</label>
-                        <input type="text" id="interviewerQuestion3" class="input-field" placeholder="What opportunities are there for growth and development within the company?">
-                    </div>
-                    <div class="form-group">
-                        <label for="interviewerQuestion4">Question 4 (Optional):</label>
-                        <input type="text" id="interviewerQuestion4" class="input-field" placeholder="Optional question...">
-                    </div>
-                    <div class="form-group">
-                        <label for="interviewerQuestion5">Question 5 (Optional):</label>
-                        <input type="text" id="interviewerQuestion5" class="input-field" placeholder="Optional question...">
-                    </div>
-                </div>
+                <div class="mt-10 space-y-8 text-left">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Example Questions:</h2>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 mb-8">
+                        <li>What does a typical day look like for someone in this role?</li>
+                        <li>How would you describe the team culture here?</li>
+                        <li>What are the next steps in the hiring process?</li>
+                    </ul>
 
-                <button id="downloadQuestionsToAskBtn" class="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                    Download Questions to Ask as Image
-                </button>
-                <p id="downloadQuestionsToAskStatus" class="mt-4 text-sm text-gray-600 hidden">Generating image...</p>
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Your Questions:</h2>
+                    <div class="space-y-6">
+                        <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
+                            <div class="mb-3">
+                                <label for="askQuestion-1" class="block text-lg font-semibold text-gray-800 mb-1">1. Your Question:</label>
+                                <textarea id="askQuestion-1" class="input-field min-h-[60px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your question here..."></textarea>
+                            </div>
+                            <div>
+                                <label for="askExplanation-1" class="block text-sm font-medium text-gray-600 mb-1">Why ask this question?</label>
+                                <textarea id="askExplanation-1" class="input-field min-h-[40px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Explain your reason for asking this question..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
+                            <div class="mb-3">
+                                <label for="askQuestion-2" class="block text-lg font-semibold text-gray-800 mb-1">2. Your Question:</label>
+                                <textarea id="askQuestion-2" class="input-field min-h-[60px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your question here..."></textarea>
+                            </div>
+                            <div>
+                                <label for="askExplanation-2" class="block text-sm font-medium text-gray-600 mb-1">Why ask this question?</label>
+                                <textarea id="askExplanation-2" class="input-field min-h-[40px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Explain your reason for asking this question..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
+                            <div class="mb-3">
+                                <label for="askQuestion-3" class="block text-lg font-semibold text-gray-800 mb-1">3. Your Question:</label>
+                                <textarea id="askQuestion-3" class="input-field min-h-[60px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your question here..."></textarea>
+                            </div>
+                            <div>
+                                <label for="askExplanation-3" class="block text-sm font-medium text-gray-600 mb-1">Why ask this question?</label>
+                                <textarea id="askExplanation-3" class="input-field min-h-[40px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Explain your reason for asking this question..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
+                            <div class="mb-3">
+                                <label for="askQuestion-4" class="block text-lg font-semibold text-gray-800 mb-1">4. Your Question:</label>
+                                <textarea id="askQuestion-4" class="input-field min-h-[60px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your question here..."></textarea>
+                            </div>
+                            <div>
+                                <label for="askExplanation-4" class="block text-sm font-medium text-gray-600 mb-1">Why ask this question?</label>
+                                <textarea id="askExplanation-4" class="input-field min-h-[40px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Explain your reason for asking this question..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
+                            <div class="mb-3">
+                                <label for="askQuestion-5" class="block text-lg font-semibold text-gray-800 mb-1">5. Your Question:</label>
+                                <textarea id="askQuestion-5" class="input-field min-h-[60px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Type your question here..."></textarea>
+                            </div>
+                            <div>
+                                <label for="askExplanation-5" class="block text-sm font-medium text-gray-600 mb-1">Why ask this question?</label>
+                                <textarea id="askExplanation-5" class="input-field min-h-[40px] shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Explain your reason for asking this question..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
+                        <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Reflection:</h2>
+                        <div class="mb-3">
+                            <label for="askImportance-question" class="block text-lg font-semibold text-gray-800 mb-1">Why is it important to come prepared with questions to ask the interviewer?</label>
+                            <textarea id="askImportance-question" class="input-field min-h-[100px]" placeholder="Type your answer here..."></textarea>
+                        </div>
+                    </div>
+
+                    <button id="getQuestionsToAskFeedbackBtn" class="mt-8 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">
+                        Get AI Feedback on My Questions ✨
+                    </button>
+
+                    <div id="questions-to-ask-feedback-area" class="mt-10 p-6 bg-yellow-50 rounded-lg border border-yellow-200 text-left hidden">
+                        <h2 class="text-xl font-bold text-yellow-800 mb-4">AI Feedback:</h2>
+                        <div id="questions-to-ask-feedback-content" class="text-gray-800">
+                            </div>
+                        <div id="questions-to-ask-feedback-loading" class="text-gray-600 mt-4 hidden">
+                            <span class="loading-spinner"></span> Generating feedback...
+                        </div>
+                    </div>
+
+                    <button id="downloadQuestionsToAskBtn" class="mt-8 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+                        Download as Image
+                    </button>
+                    <p id="downloadQuestionsToAskStatus" class="mt-4 text-sm text-gray-600 hidden">Generating image...</p>
+                </div>
             </div>
 
             <div id="illegal-questions-section" class="tab-content">
-                <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-700 mb-6">ILLEGAL INTERVIEW QUESTIONS</h2>
-                <p class="text-base sm:text-lg text-gray-700 mb-6">
-                    <span class="font-bold">Directions:</span> It's important to be aware of questions that are illegal for an interviewer to ask, as they often delve into protected characteristics. Understand why these questions are inappropriate and how to respond professionally if asked.
+                <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-700 mb-6">Understanding Illegal Interview Questions</h2>
+                <p class="text-base text-gray-700 mb-8 p-4 bg-red-50 rounded-lg border border-red-200">
+                    <span class="font-bold">Directions:</span> During a job interview, certain questions are legally prohibited. These questions often touch on personal characteristics that are protected by law. Review the examples of illegal questions below. Then, in the space provided, explain why these types of questions are considered illegal and unfair.
                 </p>
 
-                <div class="space-y-8 text-left">
-                    <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
-                        <h3 class="text-xl sm:text-2xl font-bold py-3 section-header">
-                            Illegal Question 1: Are you married or do you plan to have children?
-                        </h3>
-                        <div class="p-4">
-                            <p class="font-semibold mb-2">Why it's illegal:</p>
-                            <p class="text-gray-700 mb-4">This question is illegal because it probes into marital status and family plans, which are protected under anti-discrimination laws. It can lead to discrimination based on gender or familial responsibilities.</p>
-                            <p class="font-semibold mb-2">How to respond professionally:</p>
-                            <textarea id="illegalQ1-response" class="input-field min-h-[80px]" placeholder="Example: 'My personal life does not interfere with my ability to perform the job duties effectively. I am committed to this role and bringing my best to the team.'"></textarea>
-                        </div>
-                    </div>
+                <div class="mt-10 space-y-8 text-left">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Examples of Illegal Questions:</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-2 mb-8">
+                        <li>"How old are you?" or "What year did you graduate high school?"</li>
+                        <li>"What is your ethnic background?" or "Where were you born?"</li>
+                        <li>"What religious holidays do you observe?" or "Are you a member of a church?"</li>
+                        <li>"Are you married?" or "Do you plan on having children?"</li>
+                        <li>"Do you have any disabilities?" or "How many sick days did you take last year?"</li>
+                    </ul>
 
-                    <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
-                        <h3 class="text-xl sm:text-2xl font-bold py-3 section-header">
-                            Illegal Question 2: What is your religious affiliation?
-                        </h3>
-                        <div class="p-4">
-                            <p class="font-semibold mb-2">Why it's illegal:</p>
-                            <p class="text-gray-700 mb-4">Questions about religious beliefs are illegal as they can lead to discrimination based on religion. Employers cannot make hiring decisions based on an applicant's faith.</p>
-                            <p class="font-semibold mb-2">How to respond professionally:</p>
-                            <textarea id="illegalQ2-response" class="input-field min-h-[80px]" placeholder="Example: 'I assure you that I am available to work the required hours for this position.'"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
-                        <h3 class="text-xl sm:text-2xl font-bold py-3 section-header">
-                            Illegal Question 3: What is your age? / When did you graduate high school?
-                        </h3>
-                        <div class="p-4">
-                            <p class="font-semibold mb-2">Why it's illegal:</p>
-                            <p class="text-gray-700 mb-4">These questions are illegal because they can lead to age discrimination. The Age Discrimination in Employment Act (ADEA) protects individuals who are 40 years of age or older.</p>
-                            <p class="font-semibold mb-2">How to respond professionally:</p>
-                            <textarea id="illegalQ3-response" class="input-field min-h-[80px]" placeholder="Example: 'I am over 18 and legally authorized to work.'"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
-                        <h3 class="text-xl sm:text-2xl font-bold py-3 section-header">
-                            Illegal Question 4: What is your race or ethnicity?
-                        </h3>
-                        <div class="p-4">
-                            <p class="font-semibold mb-2">Why it's illegal:</p>
-                            <p class="text-gray-700 mb-4">Questions about race or ethnicity are illegal as they are direct violations of anti-discrimination laws. Hiring decisions must be based on qualifications, not racial background.</p>
-                            <p class="font-semibold mb-2">How to respond professionally:</p>
-                            <textarea id="illegalQ4-response" class="input-field min-h-[80px]" placeholder="Example: 'I believe my skills and experience are well-suited for this role, and I am confident in my ability to contribute to your team.'"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="mb-8 border border-gray-300 rounded-lg overflow-hidden">
-                        <h3 class="text-xl sm:text-2xl font-bold py-3 section-header">
-                            Illegal Question 5: Do you have any disabilities or health conditions?
-                        </h3>
-                        <div class="p-4">
-                            <p class="font-semibold mb-2">Why it's illegal:</p>
-                            <p class="text-gray-700 mb-4">Under the Americans with Disabilities Act (ADA), employers cannot ask about disabilities before a job offer. They can only ask if you can perform the essential functions of the job, with or without reasonable accommodation.</p>
-                            <p class="font-semibold mb-2">How to respond professionally:</p>
-                            <textarea id="illegalQ5-response" class="input-field min-h-[80px]" placeholder="Example: 'I am capable of performing all the essential functions of this job.'"></textarea>
+                    <div class="p-5 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
+                        <div class="mb-3">
+                            <label for="illegal-explanation" class="block text-lg font-semibold text-gray-800 mb-1">
+                                Why are the types of questions listed above considered illegal in a job interview?
+                            </label>
+                            <textarea id="illegal-explanation" class="input-field min-h-[150px]" placeholder="Type your explanation here, focusing on why these questions are unfair and prohibited by law..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -874,1168 +652,519 @@
                 </button>
                 <p id="downloadIllegalQuestionsStatus" class="mt-4 text-sm text-gray-600 hidden">Generating image...</p>
             </div>
-
-            <div id="ram-shack-application-section" class="tab-content">
-                <div class="ram-shack-container" id="applicationFormContainer">
-                    <div id="application-header">
-                        <h1>Ram Shack Job Application</h1>
-                        <p class="text-center text-gray-600 mb-6">Please complete this application form accurately and thoroughly.</p>
-                    </div>
-
-                    <form id="jobApplicationForm">
-                        <div id="personal-info-section-app"> <h2>Personal Information</h2>
-                            <div class="form-group">
-                                <label for="fullName">Full Name:</label>
-                                <input type="text" id="fullName" name="fullName" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Address:</label>
-                                <input type="text" id="address" name="address" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="cityStateZip">City, State, Zip:</label>
-                                <input type="text" id="cityStateZip" name="cityStateZip" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phoneNumber">Phone Number:</label>
-                                <input type="tel" id="phoneNumber" name="phoneNumber" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="emailAddress">Email Address:</label>
-                                <input type="email" id="emailAddress" name="emailAddress" required>
-                            </div>
-                        </div>
-
-                        <div id="position-applied-for-section-app"> <h2>Position Applied For</h2>
-                            <div class="form-group">
-                                <label for="positionDesired">Position Desired:</label>
-                                <input type="text" id="positionDesired" name="positionDesired" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="dateAvailable">Date Available:</label>
-                                <input type="date" id="dateAvailable" name="dateAvailable">
-                            </div>
-                            <div class="form-group">
-                                <label for="desiredSalary">Desired Salary (Hourly/Annually):</label>
-                                <input type="text" id="desiredSalary" name="desiredSalary">
-                            </div>
-                            <div class="form-group">
-                                <label>Are you legally authorized to work in the United States?</label>
-                                <div class="checkbox-group">
-                                    <input type="radio" id="authorizedYes" name="authorized" value="yes" class="mr-2">
-                                    <label for="authorizedYes" class="inline-block mb-0">Yes</label>
-                                    <input type="radio" id="authorizedNo" name="authorized" value="no" class="ml-4 mr-2">
-                                    <label for="authorizedNo" class="inline-block mb-0">No</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Have you ever been employed by The Ram Shack before?</label>
-                                <div class="checkbox-group">
-                                    <input type="radio" id="employedBeforeYes" name="employedBefore" value="yes" class="mr-2">
-                                    <label for="employedBeforeYes" class="inline-block mb-0">Yes</label>
-                                    <input type="radio" id="employedBeforeNo" name="employedBefore" value="no" class="ml-4 mr-2">
-                                    <label for="employedBeforeNo" class="inline-block mb-0">No</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="employedBeforeWhen">If yes, when?</label>
-                                <input type="text" id="employedBeforeWhen" name="employedBeforeWhen">
-                            </div>
-                        </div>
-
-                        <div id="education-section-app"> <h2>Education</h2>
-                            <h3>High School</h3>
-                            <div class="form-group">
-                                <label for="hsName">Name of High School:</label>
-                                <input type="text" id="hsName" name="hsName">
-                            </div>
-                            <div class="form-group">
-                                <label for="hsLocation">Location:</label>
-                                <input type="text" id="hsLocation" name="hsLocation">
-                            </div>
-                            <div class="form-group flex flex-wrap -mx-2">
-                                <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
-                                    <label for="hsDatesFrom">Dates Attended: From</label>
-                                    <input type="date" id="hsDatesFrom" name="hsDatesFrom">
-                                </div>
-                                <div class="w-full md:w-1/2 px-2">
-                                    <label for="hsDatesTo">To</label>
-                                    <input type="date" id="hsDatesTo" name="hsDatesTo">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Did you graduate?</label>
-                                <div class="checkbox-group">
-                                    <input type="radio" id="hsGraduatedYes" name="hsGraduated" value="yes" class="mr-2">
-                                    <label for="hsGraduatedYes" class="inline-block mb-0">Yes</label>
-                                    <input type="radio" id="hsGraduatedNo" name="hsGraduated" value="no" class="ml-4 mr-2">
-                                    <label for="hsGraduatedNo" class="inline-block mb-0">No</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="hsDegree">If yes, Degree/Diploma:</label>
-                                <input type="text" id="hsDegree" name="hsDegree">
-                            </div>
-
-                            <h3>College/University</h3>
-                            <div class="form-group">
-                                <label for="collegeName">Name of Institution:</label>
-                                <input type="text" id="collegeName" name="collegeName">
-                            </div>
-                            <div class="form-group">
-                                <label for="collegeLocation">Location:</label>
-                                <input type="text" id="collegeLocation" name="collegeLocation">
-                            </div>
-                            <div class="form-group flex flex-wrap -mx-2">
-                                <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
-                                    <label for="collegeDatesFrom">Dates Attended: From</label>
-                                    <input type="date" id="collegeDatesFrom" name="collegeDatesFrom">
-                                </div>
-                                <div class="w-full md:w-1/2 px-2">
-                                    <label for="collegeDatesTo">To</label>
-                                    <input type="date" id="collegeDatesTo" name="collegeDatesTo">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label>Did you graduate?</label>
-                                <div class="checkbox-group">
-                                    <input type="radio" id="collegeGraduatedYes" name="collegeGraduated" value="yes" class="mr-2">
-                                    <label for="collegeGraduatedYes" class="inline-block mb-0">Yes</label>
-                                    <input type="radio" id="collegeGraduatedNo" name="collegeGraduated" value="no" class="ml-4 mr-2">
-                                    <label for="collegeGraduatedNo" class="inline-block mb-0">No</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="collegeDegree">If yes, Degree/Major:</label>
-                                <input type="text" id="collegeDegree" name="collegeDegree">
-                            </div>
-
-                            <h3>Other (Trade School, Certifications, etc.)</h3>
-                            <div class="form-group">
-                                <label for="otherName">Name of Institution/Program:</label>
-                                <input type="text" id="otherName" name="otherName">
-                            </div>
-                            <div class="form-group">
-                                <label for="otherLocation">Location:</label>
-                                <input type="text" id="otherLocation" name="otherLocation">
-                            </div>
-                            <div class="form-group flex flex-wrap -mx-2">
-                                <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
-                                    <label for="otherDatesFrom">Dates Attended: From</label>
-                                    <input type="date" id="otherDatesFrom" name="otherDatesFrom">
-                                </div>
-                                <div class="w-full md:w-1/2 px-2">
-                                    <label for="otherDatesTo">To</label>
-                                    <input type="date" id="otherDatesTo" name="otherDatesTo">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="otherCredential">Certificate/Credential:</label>
-                                <input type="text" id="otherCredential" name="otherCredential">
-                            </div>
-                        </div>
-
-                        <div id="work-experience-section-app"> <h2>Work Experience</h2>
-                            <p class="text-gray-600 mb-4">Please list your last three employers, starting with the most recent.</p>
-
-                            <h3>Employer 1</h3>
-                            <div class="form-group">
-                                <label for="employer1Company">Company Name:</label>
-                                <input type="text" id="employer1Company" name="employer1Company">
-                            </div>
-                            <div class="form-group">
-                                <label for="employer1Title">Job Title:</label>
-                                <input type="text" id="employer1Title" name="employer1Title">
-                            </div>
-                            <div class="form-group flex flex-wrap -mx-2">
-                                <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
-                                    <label for="employer1DatesFrom">Dates Employed: From</label>
-                                    <input type="date" id="employer1DatesFrom" name="employer1DatesFrom">
-                                </div>
-                                <div class="w-full md:w-1/2 px-2">
-                                    <label for="employer1DatesTo">To</label>
-                                    <input type="date" id="employer1DatesTo" name="employer1DatesTo">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="employer1Supervisor">Supervisor's Name:</label>
-                                <input type="text" id="employer1Supervisor" name="employer1Supervisor">
-                            </div>
-                            <div class="form-group">
-                                <label for="employer1Phone">Phone Number:</label>
-                                <input type="tel" id="employer1Phone" name="employer1Phone">
-                            </div>
-                            <div class="form-group">
-                                <label>May we contact this employer?</label>
-                                <div class="checkbox-group">
-                                    <input type="radio" id="employer1ContactYes" name="employer1Contact" value="yes" class="mr-2">
-                                    <label for="employer1ContactYes" class="inline-block mb-0">Yes</label>
-                                    <input type="radio" id="employer1ContactNo" name="employer1Contact" value="no" class="ml-4 mr-2">
-                                    <label for="employer1ContactNo" class="inline-block mb-0">No</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="employer1Responsibilities">Responsibilities:</label>
-                                <textarea id="employer1Responsibilities" name="employer1Responsibilities"></textarea>
-                            </div>
-
-                            <h3>Employer 2</h3>
-                            <div class="form-group">
-                                <label for="employer2Company">Company Name:</label>
-                                <input type="text" id="employer2Company" name="employer2Company">
-                            </div>
-                            <div class="form-group">
-                                <label for="employer2Title">Job Title:</label>
-                                <input type="text" id="employer2Title" name="employer2Title">
-                            </div>
-                            <div class="form-group flex flex-wrap -mx-2">
-                                <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
-                                    <label for="employer2DatesFrom">Dates Employed: From</label>
-                                    <input type="date" id="employer2DatesFrom" name="employer2DatesFrom">
-                                </div>
-                                <div class="w-full md:w-1/2 px-2">
-                                    <label for="employer2DatesTo">To</label>
-                                    <input type="date" id="employer2DatesTo" name="employer2DatesTo">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="employer2Supervisor">Supervisor's Name:</label>
-                                <input type="text" id="employer2Supervisor" name="employer2Supervisor">
-                            </div>
-                            <div class="form-group">
-                                <label for="employer2Phone">Phone Number:</label>
-                                <input type="tel" id="employer2Phone" name="employer2Phone">
-                            </div>
-                            <div class="form-group">
-                                <label>May we contact this employer?</label>
-                                <div class="checkbox-group">
-                                    <input type="radio" id="employer2ContactYes" name="employer2Contact" value="yes" class="mr-2">
-                                    <label for="employer2ContactYes" class="inline-block mb-0">Yes</label>
-                                    <input type="radio" id="employer2ContactNo" name="employer2Contact" value="no" class="ml-4 mr-2">
-                                    <label for="employer2ContactNo" class="inline-block mb-0">No</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="employer2Responsibilities">Responsibilities:</label>
-                                <textarea id="employer2Responsibilities" name="employer2Responsibilities"></textarea>
-                            </div>
-
-                            <h3>Employer 3</h3>
-                            <div class="form-group">
-                                <label for="employer3Company">Company Name:</label>
-                                <input type="text" id="employer3Company" name="employer3Company">
-                            </div>
-                            <div class="form-group">
-                                <label for="employer3Title">Job Title:</label>
-                                <input type="text" id="employer3Title" name="employer3Title">
-                            </div>
-                            <div class="form-group flex flex-wrap -mx-2">
-                                <div class="w-full md:w-1/2 px-2 mb-4 md:mb-0">
-                                    <label for="employer3DatesFrom">Dates Employed: From</label>
-                                    <input type="date" id="employer3DatesFrom" name="employer3DatesFrom">
-                                </div>
-                                <div class="w-full md:w-1/2 px-2">
-                                    <label for="employer3DatesTo">To</label>
-                                    <input type="date" id="employer3DatesTo" name="employer3DatesTo">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="employer3Supervisor">Supervisor's Name:</label>
-                                <input type="text" id="employer3Supervisor" name="employer3Supervisor">
-                            </div>
-                            <div class="form-group">
-                                <label for="employer3Phone">Phone Number:</label>
-                                <input type="tel" id="employer3Phone" name="employer3Phone">
-                            </div>
-                            <div class="form-group">
-                                <label>May we contact this employer?</label>
-                                <div class="checkbox-group">
-                                    <input type="radio" id="employer3ContactYes" name="employer3Contact" value="yes" class="mr-2">
-                                    <label for="employer3ContactYes" class="inline-block mb-0">Yes</label>
-                                    <input type="radio" id="employer3ContactNo" name="employer3Contact" value="no" class="ml-4 mr-2">
-                                    <label for="employer3ContactNo" class="inline-block mb-0">No</label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="employer3Responsibilities">Responsibilities:</label>
-                                <textarea id="employer3Responsibilities" name="employer3Responsibilities"></textarea>
-                            </div>
-                        </div>
-
-                        <div id="references-section-app"> <h2>References</h2>
-                            <p class="text-gray-600 mb-4">Please provide three professional references who are not relatives.</p>
-
-                            <h3>Reference 1</h3>
-                            <div class="form-group">
-                                <label for="ref1NameApp">Name:</label>
-                                <input type="text" id="ref1NameApp" name="ref1NameApp">
-                            </div>
-                            <div class="form-group">
-                                <label for="ref1RelationshipApp">Relationship:</label>
-                                <input type="text" id="ref1RelationshipApp" name="ref1RelationshipApp">
-                            </div>
-                            <div class="form-group">
-                                <label for="ref1PhoneApp">Phone Number:</label>
-                                <input type="tel" id="ref1PhoneApp" name="ref1PhoneApp">
-                            </div>
-                            <div class="form-group">
-                                <label for="ref1EmailApp">Email Address:</label>
-                                <input type="email" id="ref1EmailApp" name="ref1EmailApp">
-                            </div>
-
-                            <h3>Reference 2</h3>
-                            <div class="form-group">
-                                <label for="ref2NameApp">Name:</label>
-                                <input type="text" id="ref2NameApp" name="ref2NameApp">
-                            </div>
-                            <div class="form-group">
-                                <label for="ref2RelationshipApp">Relationship:</label>
-                                <input type="text" id="ref2RelationshipApp" name="ref2RelationshipApp">
-                            </div>
-                            <div class="form-group">
-                                <label for="ref2PhoneApp">Phone Number:</label>
-                                <input type="tel" id="ref2PhoneApp" name="ref2PhoneApp">
-                            </div>
-                            <div class="form-group">
-                                <label for="ref2EmailApp">Email Address:</label>
-                                <input type="email" id="ref2EmailApp" name="ref2EmailApp">
-                            </div>
-
-                            <h3>Reference 3</h3>
-                            <div class="form-group">
-                                <label for="ref3NameApp">Name:</label>
-                                <input type="text" id="ref3NameApp" name="ref3NameApp">
-                            </div>
-                            <div class="form-group">
-                                <label for="ref3RelationshipApp">Relationship:</label>
-                                <input type="text" id="ref3RelationshipApp" name="ref3RelationshipApp">
-                            </div>
-                            <div class="form-group">
-                                <label for="ref3PhoneApp">Phone Number:</label>
-                                <input type="tel" id="ref3PhoneApp" name="ref3PhoneApp">
-                            </div>
-                            <div class="form-group">
-                                <label for="ref3EmailApp">Email Address:</label>
-                                <input type="email" id="ref3EmailApp" name="ref3EmailApp">
-                            </div>
-                        </div>
-
-                        <div id="disclaimer-signature-section-app"> <h2>Disclaimer and Signature</h2>
-                            <div class="form-group">
-                                <div class="checkbox-group align-start">
-                                    <input type="checkbox" id="disclaimer1App" name="disclaimer1App" required class="mt-1">
-                                    <label for="disclaimer1App" class="disclaimer-text ml-2">
-                                        I certify that the information provided in this application is true and complete to the best of my knowledge. I understand that any false or misleading information given in my application or interview(s) may result in my disqualification from employment or termination if discovered after employment.
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox-group align-start">
-                                    <input type="checkbox" id="disclaimer2App" name="disclaimer2App" required class="mt-1">
-                                    <label for="disclaimer2App" class="disclaimer-text ml-2">
-                                        I authorize The Ram Shack to contact my previous employers, references, and educational institutions to verify the information provided and to inquire about my work performance and character. I release The Ram Shack and any references from liability for any information provided.
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="checkbox-group align-start">
-                                    <input type="checkbox" id="disclaimer3App" name="disclaimer3App" required class="mt-1">
-                                    <label for="disclaimer3App" class="disclaimer-text ml-2">
-                                        I understand that this application does not constitute an an offer of employment. If hired, I agree to abide by all policies, rules, and regulations of The Ram Shack. I understand that my employment will be "at-will," meaning that either I or The Ram Shack may terminate the employment relationship at any time, with or without cause or notice, for any reason not prohibited by law.
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="form-group mt-6">
-                                <label for="signatureCanvas">Signature:</label>
-                                <canvas id="signatureCanvas"></canvas>
-                                <button type="button" id="clearSignature" class="clear-button">Clear Signature</button>
-                            </div>
-                            <div class="form-group">
-                                <label for="dateApp">Date:</label>
-                                <input type="date" id="dateApp" name="dateApp">
-                            </div>
-                        </div>
-
-                        <button type="submit" class="submit-button" id="submitButton">Submit Application</button>
-                        <p id="submitMessage" class="submit-message"></p>
-                        <p id="warningMessage" class="warning-message"></p>
-                    </form>
-
-                    <div id="downloadSection" class="download-section hidden">
-                        <p>Your application has been successfully submitted!</p>
-                        <p>Click the button below to download a copy of your filled application as a PDF:</p>
-                        <button id="downloadApplicationPDFBtn" class="download-button">Download Application as PDF</button>
-                        <p id="downloadStatus" class="download-status hidden">Generating PDF...</p>
-                        <p class="mt-4">Please submit this downloaded PDF file to your Google Site.</p>
-                    </div>
-
-                    <div id="thank-you-section-app"> <p class="thank-you">Thank you for your interest in The Ram Shack!</p>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script type="module">
-        // Firebase imports
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-
-        // Firebase configuration (provided by Canvas environment)
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const auth = getAuth(app);
-
-        let currentUserId = null;
-        let isAuthReady = false; // Flag to ensure auth state is known
-
-        // Authenticate user and set up auth state listener
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                currentUserId = user.uid;
-                console.log("Auth state changed: User is logged in with UID:", currentUserId);
-            } else {
-                console.log("Auth state changed: No user logged in. Attempting anonymous sign-in or custom token.");
-                try {
-                    if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                        await signInWithCustomToken(auth, __initial_auth_token);
-                        currentUserId = auth.currentUser.uid;
-                        console.log("Signed in with custom token:", currentUserId);
-                    } else {
-                        await signInAnonymously(auth);
-                        currentUserId = auth.currentUser.uid;
-                        console.log("Signed in anonymously:", currentUserId);
-                    }
-                } catch (error) {
-                    console.error("Firebase authentication error during onAuthStateChanged:", error);
-                }
-            }
-            isAuthReady = true;
-        });
-
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const tabButtons = document.querySelectorAll('.tab-button');
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tab-button');
             const tabContents = document.querySelectorAll('.tab-content');
 
-            console.log("Found tab buttons:", tabButtons.length, tabButtons);
-            console.log("Found tab contents:", tabContents.length, tabContents);
+            // Function to handle tab switching
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const targetTabId = tab.dataset.tab;
 
-            // Ensure one tab is active on load
-            let initialActiveTabFound = false;
-            tabButtons.forEach(button => {
-                if (button.classList.contains('active')) {
-                    const targetTabId = button.dataset.tab;
-                    const contentElement = document.getElementById(targetTabId);
-                    if (contentElement) {
-                        contentElement.classList.add('active');
-                        initialActiveTabFound = true;
-                        console.log(`Initial active tab set: ${targetTabId}`);
-                    }
-                }
-            });
-
-            // If no active tab found (e.g., first load without explicit active class), default to the first one
-            if (!initialActiveTabFound && tabButtons.length > 0) {
-                tabButtons[0].classList.add('active');
-                const firstTabContentId = tabButtons[0].dataset.tab;
-                const firstTabContent = document.getElementById(firstTabContentId);
-                if (firstTabContent) {
-                    firstTabContent.classList.add('active');
-                    console.log(`Defaulted to first tab: ${firstTabContentId}`);
-                }
-            }
-
-
-            tabButtons.forEach(button => {
-                button.addEventListener('click', (event) => {
-                    console.log("Tab button clicked:", button.textContent);
-                    // Remove active class from all buttons and content
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    // Deactivate all tabs and hide all content
+                    tabs.forEach(t => t.classList.remove('active'));
                     tabContents.forEach(content => content.classList.remove('active'));
 
-                    // Add active class to the clicked button and corresponding content
-                    const targetTabId = button.dataset.tab;
-                    const targetContent = document.getElementById(targetTabId);
-                    if (targetContent) {
-                        targetContent.classList.add('active');
-                        button.classList.add('active');
-                        console.log(`Activated tab: ${targetTabId}`);
-                    } else {
-                        console.error(`Content section with ID "${targetTabId}" not found.`);
-                    }
+                    // Activate the clicked tab and show its content
+                    tab.classList.add('active');
+                    document.getElementById(targetTabId).classList.add('active');
                 });
             });
 
-            // Function to download content as image for career worksheets
-            async function downloadAsImage(sectionId, filename, statusElementId) {
-                const section = document.getElementById(sectionId);
-                const statusElement = document.getElementById(statusElementId);
-
-                if (!section) {
-                    console.error(`Section with ID ${sectionId} not found.`);
-                    return;
-                }
-
-                statusElement.classList.remove('hidden');
-                statusElement.textContent = 'Generating image...';
-
-                try {
-                    // Temporarily make the section visible if it's hidden
-                    const originalDisplay = section.style.display;
-                    section.style.display = 'block';
-
-                    const canvas = await html2canvas(section, {
-                        scale: 2, // Increase scale for better resolution
-                        useCORS: true, // Enable cross-origin images if any
-                        logging: true,
-                        // Ignore any elements that might cause issues, e.g., external iframes
-                        ignoreElements: (element) => {
-                            return element.tagName === 'IFRAME';
-                        }
-                    });
-
-                    // Restore original display
-                    section.style.display = originalDisplay;
-
-                    const link = document.createElement('a');
-                    link.href = canvas.toDataURL('image/png');
-                    link.download = filename;
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-
-                    statusElement.textContent = 'Image generated successfully!';
-                    setTimeout(() => statusElement.classList.add('hidden'), 3000); // Hide after 3 seconds
-                } catch (error) {
-                    console.error('Error generating image:', error);
-                    statusElement.textContent = 'Error generating image. Please try again.';
-                    setTimeout(() => statusElement.classList.add('hidden'), 3000);
-                }
+            // Set the first tab as active by default
+            if (tabs.length > 0 && tabContents.length > 0) {
+                tabs[0].classList.add('active');
+                tabContents[0].classList.add('active');
             }
 
-            // Attach event listeners to download buttons for career worksheets
-            document.getElementById('downloadCareerAssessmentsBtn')?.addEventListener('click', () => {
-                downloadAsImage('career-assessments-section', 'career-assessments.png', 'downloadCareerAssessmentsStatus');
-            });
 
-            document.getElementById('downloadCareerInfoBtn')?.addEventListener('click', () => {
-                downloadAsImage('career-info-worksheet-section', 'career-info-worksheet.png', 'downloadCareerInfoStatus');
-            });
+            // --- Career Assessments Download Logic ---
+            const downloadCareerAssessmentsBtn = document.getElementById('downloadCareerAssessmentsBtn');
+            const careerAssessmentsSection = document.getElementById('career-assessments-section');
+            const downloadCareerAssessmentsStatus = document.getElementById('downloadCareerAssessmentsStatus');
 
-            document.getElementById('downloadReferencesBtn')?.addEventListener('click', () => {
-                downloadAsImage('references-section', 'references-list.png', 'downloadReferencesStatus');
-            });
-
-            document.getElementById('downloadInterviewPracticeBtn')?.addEventListener('click', () => {
-                downloadAsImage('interview-practice-questions-section', 'interview-practice-questions.png', 'downloadInterviewPracticeStatus');
-            });
-
-            document.getElementById('downloadQuestionsToAskBtn')?.addEventListener('click', () => {
-                downloadAsImage('questions-to-ask-section', 'questions-to-ask.png', 'downloadQuestionsToAskStatus');
-            });
-
-            document.getElementById('downloadIllegalQuestionsBtn')?.addEventListener('click', () => {
-                downloadAsImage('illegal-questions-section', 'illegal-interview-questions.png', 'downloadIllegalQuestionsStatus');
-            });
-
-            // --- Ram Shack Application JavaScript Logic ---
-            const canvas = document.getElementById('signatureCanvas');
-            // Check if canvas exists before getting context
-            if (canvas) {
-                const ctx = canvas.getContext('2d');
-                const clearButton = document.getElementById('clearSignature');
-                const form = document.getElementById('jobApplicationForm'); // This is the form within the Ram Shack section
-                const submitButton = document.getElementById('submitButton');
-                const submitMessageElement = document.getElementById('submitMessage');
-                const warningMessageElement = document.getElementById('warningMessage');
-                const downloadSection = document.getElementById('downloadSection');
-                const downloadApplicationPDFBtn = document.getElementById('downloadApplicationPDFBtn');
-                const downloadStatusElement = document.getElementById('downloadStatus');
-
-                let isDrawing = false;
-                let lastX = 0;
-                let lastY = 0;
-
-                // Function to set canvas dimensions correctly for responsiveness
-                function resizeCanvas() {
-                    const rect = canvas.getBoundingClientRect();
-                    canvas.width = rect.width;
-                    canvas.height = rect.height;
-
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    ctx.lineWidth = 2;
-                    ctx.lineJoin = 'round';
-                    ctx.lineCap = 'round';
-                    ctx.strokeStyle = '#1f2937'; // Dark gray color for signature
-                }
-
-                // Initial resize and on window resize
-                window.addEventListener('load', resizeCanvas);
-                window.addEventListener('resize', resizeCanvas);
-
-                function draw(e) {
-                    if (!isDrawing) return; // Stop the fn from running when not moused down
-
-                    // Get coordinates based on event type (mouse or touch)
-                    let clientX, clientY;
-                    if (e.touches) { // Touch event
-                        clientX = e.touches[0].clientX;
-                        clientY = e.touches[0].clientY;
-                    } else { // Mouse event
-                        clientX = e.clientX;
-                        clientY = e.clientY;
-                    }
-
-                    // Calculate offset relative to the canvas
-                    const rect = canvas.getBoundingClientRect();
-                    const offsetX = clientX - rect.left;
-                    const offsetY = clientY - rect.top;
-
-                    ctx.beginPath();
-                    ctx.moveTo(lastX, lastY);
-                    ctx.lineTo(offsetX, offsetY);
-                    ctx.stroke();
-                    [lastX, lastY] = [offsetX, offsetY];
-                }
-
-                // Mouse events
-                canvas.addEventListener('mousedown', (e) => {
-                    isDrawing = true;
-                    const rect = canvas.getBoundingClientRect();
-                    [lastX, lastY] = [e.clientX - rect.left, e.clientY - rect.top];
-                });
-                canvas.addEventListener('mousemove', draw);
-                canvas.addEventListener('mouseup', () => isDrawing = false);
-                canvas.addEventListener('mouseout', () => isDrawing = false); // Stop drawing if mouse leaves canvas
-
-                // Touch events
-                canvas.addEventListener('touchstart', (e) => {
-                    e.preventDefault(); // Prevent scrolling
-                    isDrawing = true;
-                    const rect = canvas.getBoundingClientRect();
-                    [lastX, lastY] = [e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top];
-                }, { passive: false }); // Use passive: false to allow preventDefault
-
-                canvas.addEventListener('touchmove', draw, { passive: false }); // Use passive: false to allow preventDefault
-
-                canvas.addEventListener('touchend', () => isDrawing = false);
-                canvas.addEventListener('touchcancel', () => isDrawing = false); // For when touch is interrupted
-
-                // Clear signature button
-                clearButton.addEventListener('click', () => {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                });
-
-                // Handle form submission
-                form.addEventListener('submit', async (e) => {
-                    e.preventDefault(); // Prevent default form submission
-
-                    // Clear previous messages and hide download section
-                    submitMessageElement.textContent = '';
-                    warningMessageElement.textContent = '';
-                    downloadSection.classList.add('hidden');
-
-                    // Check if authentication is ready
-                    if (!isAuthReady || !currentUserId) {
-                        warningMessageElement.textContent = 'Authentication not ready. Please wait a moment and try again.';
-                        console.warn("Submission attempted: Authentication not ready or user not logged in.");
-                        return;
-                    }
-
-                    // Check if all required fields are filled, including disclaimers
-                    if (!form.checkValidity()) {
-                        warningMessageElement.textContent = 'Please fill out all required fields and acknowledge all disclaimers before submitting.';
-                        form.reportValidity(); // Show browser's validation messages
-                        return;
-                    }
-
-                    submitMessageElement.textContent = 'Submitting application...';
-                    submitMessageElement.style.color = '#3b82f6'; // Blue for submitting status
-
-                    // Collect all form data
-                    const formData = new FormData(form);
-                    const applicationData = {};
-
-                    // Helper function to get value for radio buttons
-                    const getRadioValue = (name) => {
-                        const radios = document.querySelectorAll(`input[name="${name}"]`);
-                        for (const radio of radios) {
-                            if (radio.checked) {
-                                return radio.value;
-                            }
-                        }
-                        return '';
-                    };
-
-                    // Personal Information
-                    applicationData.personalInfo = {
-                        fullName: formData.get('fullName') || '',
-                        address: formData.get('address') || '',
-                        cityStateZip: formData.get('cityStateZip') || '',
-                        phoneNumber: formData.get('phoneNumber') || '',
-                        emailAddress: formData.get('emailAddress') || ''
-                    };
-
-                    // Position Applied For
-                    applicationData.positionInfo = {
-                        positionDesired: formData.get('positionDesired') || '',
-                        dateAvailable: formData.get('dateAvailable') || '',
-                        desiredSalary: formData.get('desiredSalary') || '',
-                        authorizedToWork: getRadioValue('authorized') || '',
-                        employedBefore: getRadioValue('employedBefore') || '',
-                        employedBeforeWhen: formData.get('employedBeforeWhen') || ''
-                    };
-
-                    // Education
-                    applicationData.education = {
-                        highSchool: {
-                            name: formData.get('hsName') || '',
-                            location: formData.get('hsLocation') || '',
-                            datesFrom: formData.get('hsDatesFrom') || '',
-                            datesTo: formData.get('hsDatesTo') || '',
-                            graduated: getRadioValue('hsGraduated') || '',
-                            degree: formData.get('hsDegree') || ''
-                        },
-                        college: {
-                            name: formData.get('collegeName') || '',
-                            location: formData.get('collegeLocation') || '',
-                            datesFrom: formData.get('collegeDatesFrom') || '',
-                            datesTo: formData.get('collegeDatesTo') || '',
-                            graduated: getRadioValue('collegeGraduated') || '',
-                            degree: formData.get('collegeDegree') || ''
-                        },
-                        otherEducation: {
-                            name: formData.get('otherName') || '',
-                            location: formData.get('otherLocation') || '',
-                            datesFrom: formData.get('otherDatesFrom') || '',
-                            datesTo: formData.get('otherDatesTo') || '',
-                            credential: formData.get('otherCredential') || ''
-                        }
-                    };
-
-                    // Work Experience
-                    applicationData.workExperience = [];
-                    for (let i = 1; i <= 3; i++) {
-                        applicationData.workExperience.push({
-                            company: formData.get(`employer${i}Company`) || '',
-                            title: formData.get(`employer${i}Title`) || '',
-                            datesFrom: formData.get(`employer${i}DatesFrom`) || '',
-                            datesTo: formData.get(`employer${i}DatesTo`) || '',
-                            supervisor: formData.get(`employer${i}Supervisor`) || '',
-                            phone: formData.get(`employer${i}Phone`) || '',
-                            mayContact: getRadioValue(`employer${i}Contact`) || '',
-                            responsibilities: formData.get(`employer${i}Responsibilities`) || ''
-                        });
-                    }
-
-                    // References (using the new IDs for the application section)
-                    applicationData.references = [];
-                    for (let i = 1; i <= 3; i++) {
-                        applicationData.references.push({
-                            name: formData.get(`ref${i}NameApp`) || '', // Use App suffix
-                            relationship: formData.get(`ref${i}RelationshipApp`) || '', // Use App suffix
-                            phone: formData.get(`ref${i}PhoneApp`) || '', // Use App suffix
-                            email: formData.get(`ref${i}EmailApp`) || '' // Use App suffix
-                        });
-                    }
-
-                    // Disclaimers (using the new IDs for the application section)
-                    applicationData.disclaimers = {
-                        disclaimer1: formData.get('disclaimer1App') === 'on', // Use App suffix
-                        disclaimer2: formData.get('disclaimer2App') === 'on', // Use App suffix
-                        disclaimer3: formData.get('disclaimer3App') === 'on' // Use App suffix
-                    };
-
-                    // Signature and Date
-                    applicationData.signature = canvas.toDataURL('image/png');
-                    applicationData.submissionDate = formData.get('dateApp') || ''; // Use App suffix
-
-                    // Firestore document reference
-                    const docId = 'ram_shack_application'; // Fixed doc ID for this application
-                    const docRef = doc(db, `artifacts/${appId}/users/${currentUserId}/job_applications`, docId);
+            if (downloadCareerAssessmentsBtn) {
+                downloadCareerAssessmentsBtn.addEventListener('click', async () => {
+                    downloadCareerAssessmentsBtn.disabled = true;
+                    downloadCareerAssessmentsStatus.classList.remove('hidden');
+                    downloadCareerAssessmentsStatus.textContent = 'Generating image...';
 
                     try {
-                        await setDoc(docRef, applicationData);
-                        submitMessageElement.textContent = 'Application submitted successfully!';
-                        submitMessageElement.style.color = '#10b981'; // Green for success
-
-                        // Hide the submit button and messages, then show the download section
-                        submitButton.classList.add('hide-for-capture');
-                        submitMessageElement.classList.add('hide-for-capture');
-                        warningMessageElement.classList.add('hide-for-capture');
-                        downloadSection.classList.remove('hidden');
-
-                    } catch (error) {
-                        console.error("Error submitting application to Firestore: ", error);
-                        warningMessageElement.textContent = 'Submission failed. Please try again. Error: ' + error.message;
-                        submitMessageElement.textContent = ''; // Clear submitting message
-                    } finally {
-                        // Clear messages after a few seconds (except the download section)
-                        setTimeout(() => {
-                            submitMessageElement.textContent = '';
-                            warningMessageElement.textContent = '';
-                        }, 10000);
-                    }
-                });
-
-                // --- Download PDF Logic (Revised for Direct PDF Drawing) ---
-                downloadApplicationPDFBtn.addEventListener('click', async () => {
-                    downloadApplicationPDFBtn.disabled = true;
-                    downloadStatusElement.classList.remove('hidden');
-                    downloadStatusElement.textContent = 'Generating PDF... This may take a moment.';
-                    console.log("Starting PDF generation for Ram Shack Application...");
-
-                    try {
-                        const { jsPDF } = window.jspdf;
-                        const doc = new jsPDF('p', 'mm', 'a4'); // Portrait, millimeters, A4 size
-
-                        const margin = 15; // 15mm margin on all sides
-                        const pdfPageWidth = doc.internal.pageSize.getWidth();
-                        const pdfPageHeight = doc.internal.pageSize.getHeight();
-                        const usablePageWidth = pdfPageWidth - (2 * margin);
-
-                        let currentY = margin; // This is the top position for the *next* content on the current PDF page
-                        const lineHeight = 7; // Standard line height for text
-                        const sectionSpacing = 10; // Space between major sections
-                        const subSectionSpacing = 7; // Space between sub-sections (e.g., High School, College)
-                        const fieldSpacing = 5; // Space between individual form fields
-
-                        // Helper to add a new page if content exceeds current page height
-                        const addPageIfNeeded = (heightNeeded) => {
-                            if (currentY + heightNeeded > pdfPageHeight - margin) {
-                                doc.addPage();
-                                currentY = margin; // Reset Y for new page
-                            }
-                        };
-
-                        // Helper to add a title
-                        const addTitle = (text) => {
-                            addPageIfNeeded(lineHeight * 2); // Estimate height for title + some space
-                            doc.setFont('helvetica', 'bold');
-                            doc.setFontSize(22);
-                            doc.setTextColor(31, 41, 55); // text-gray-900
-                            doc.text(text, pdfPageWidth / 2, currentY, { align: 'center' });
-                            currentY += lineHeight * 2;
-                            doc.setDrawColor(229, 231, 235); // border-gray-200
-                            doc.line(margin, currentY - lineHeight / 2, pdfPageWidth - margin, currentY - lineHeight / 2); // Underline
-                            currentY += lineHeight;
-                        };
-
-                        // Helper to add a section heading
-                        const addSectionHeading = (text) => {
-                            addPageIfNeeded(lineHeight * 1.5); // Estimate height for heading
-                            doc.setFont('helvetica', 'bold');
-                            doc.setFontSize(16);
-                            doc.setTextColor(55, 65, 81); // text-gray-800
-                            doc.text(text, margin, currentY);
-                            currentY += lineHeight * 1.5;
-                            doc.setDrawColor(229, 231, 235); // border-gray-200
-                            doc.line(margin, currentY - lineHeight / 2, pdfPageWidth - margin, currentY - lineHeight / 2); // Underline
-                            currentY += lineHeight;
-                        };
-
-                        // Helper to add a sub-section heading
-                        const addSubSectionHeading = (text) => {
-                            addPageIfNeeded(lineHeight); // Estimate height for sub-heading
-                            doc.setFont('helvetica', 'bold');
-                            doc.setFontSize(14);
-                            doc.setTextColor(75, 85, 99); // text-gray-700
-                            doc.text(text, margin, currentY);
-                            currentY += lineHeight + 3; // Add a bit more space after sub-heading
-                        };
-
-                        // Helper to add a field and its value
-                        const addField = (label, value) => {
-                            const text = `${label}: ${value || 'N/A'}`;
-                            const splitText = doc.splitTextToSize(text, usablePageWidth - 20); // Allow some padding for text
-                            const textHeight = splitText.length * doc.getLineHeight() / doc.internal.scaleFactor;
-
-                            addPageIfNeeded(textHeight + fieldSpacing);
-                            doc.setFont('helvetica', 'normal');
-                            doc.setFontSize(11);
-                            doc.setTextColor(31, 41, 55); // text-gray-900
-                            doc.text(splitText, margin + 5, currentY); // Indent slightly
-                            currentY += textHeight + fieldSpacing;
-                        };
-
-                        // Retrieve the submitted application data
-                        const formData = new FormData(form);
-                        const applicationData = {};
-
-                        const getRadioValue = (name) => {
-                            const radios = document.querySelectorAll(`input[name="${name}"]`);
-                            for (const radio of radios) {
-                                if (radio.checked) {
-                                    return radio.value;
-                                }
-                            }
-                            return '';
-                        };
-
-                        applicationData.personalInfo = {
-                            fullName: formData.get('fullName') || '',
-                            address: formData.get('address') || '',
-                            cityStateZip: formData.get('cityStateZip') || '',
-                            phoneNumber: formData.get('phoneNumber') || '',
-                            emailAddress: formData.get('emailAddress') || ''
-                        };
-
-                        applicationData.positionInfo = {
-                            positionDesired: formData.get('positionDesired') || '',
-                            dateAvailable: formData.get('dateAvailable') || '',
-                            desiredSalary: formData.get('desiredSalary') || '',
-                            authorizedToWork: getRadioValue('authorized') || '',
-                            employedBefore: getRadioValue('employedBefore') || '',
-                            employedBeforeWhen: formData.get('employedBeforeWhen') || ''
-                        };
-
-                        applicationData.education = {
-                            highSchool: {
-                                name: formData.get('hsName') || '',
-                                location: formData.get('hsLocation') || '',
-                                datesFrom: formData.get('hsDatesFrom') || '',
-                                datesTo: formData.get('hsDatesTo') || '',
-                                graduated: getRadioValue('hsGraduated') || '',
-                                degree: formData.get('hsDegree') || ''
-                            },
-                            college: {
-                                name: formData.get('collegeName') || '',
-                                location: formData.get('collegeLocation') || '',
-                                datesFrom: formData.get('collegeDatesFrom') || '',
-                                datesTo: formData.get('collegeDatesTo') || '',
-                                graduated: getRadioValue('collegeGraduated') || '',
-                                degree: formData.get('collegeDegree') || ''
-                            },
-                            otherEducation: {
-                                name: formData.get('otherName') || '',
-                                location: formData.get('otherLocation') || '',
-                                datesFrom: formData.get('otherDatesFrom') || '',
-                                datesTo: formData.get('otherDatesTo') || '',
-                                credential: formData.get('otherCredential') || ''
-                            }
-                        };
-
-                        applicationData.workExperience = [];
-                        for (let i = 1; i <= 3; i++) {
-                            applicationData.workExperience.push({
-                                company: formData.get(`employer${i}Company`) || '',
-                                title: formData.get(`employer${i}Title`) || '',
-                                datesFrom: formData.get(`employer${i}DatesFrom`) || '',
-                                datesTo: formData.get(`employer${i}DatesTo`) || '',
-                                supervisor: formData.get(`employer${i}Supervisor`) || '',
-                                phone: formData.get(`employer${i}Phone`) || '',
-                                mayContact: getRadioValue(`employer${i}Contact`) || '',
-                                responsibilities: formData.get(`employer${i}Responsibilities`) || ''
-                            });
-                        }
-
-                        applicationData.references = [];
-                        for (let i = 1; i <= 3; i++) {
-                            applicationData.references.push({
-                                name: formData.get(`ref${i}NameApp`) || '', // Use App suffix
-                                relationship: formData.get(`ref${i}RelationshipApp`) || '', // Use App suffix
-                                phone: formData.get(`ref${i}PhoneApp`) || '', // Use App suffix
-                                email: formData.get(`ref${i}EmailApp`) || '' // Use App suffix
-                            });
-                        }
-
-                        applicationData.disclaimers = {
-                            disclaimer1: formData.get('disclaimer1App') === 'on', // Use App suffix
-                            disclaimer2: formData.get('disclaimer2App') === 'on', // Use App suffix
-                            disclaimer3: formData.get('disclaimer3App') === 'on' // Use App suffix
-                        };
-
-                        applicationData.signature = canvas.toDataURL('image/png');
-                        applicationData.submissionDate = formData.get('dateApp') || ''; // Use App suffix
-
-
-                        // --- Add Content to PDF ---
-
-                        // Application Header
-                        addTitle('Ram Shack Job Application');
-                        addPageIfNeeded(lineHeight);
-                        doc.setFont('helvetica', 'normal');
-                        doc.setFontSize(10);
-                        doc.setTextColor(107, 114, 128); // text-gray-600
-                        doc.text('Please complete this application form accurately and thoroughly.', pdfPageWidth / 2, currentY, { align: 'center' });
-                        currentY += lineHeight + sectionSpacing;
-
-                        // Personal Information
-                        addSectionHeading('Personal Information');
-                        addField('Full Name', applicationData.personalInfo.fullName);
-                        addField('Address', applicationData.personalInfo.address);
-                        addField('City, State, Zip', applicationData.personalInfo.cityStateZip);
-                        addField('Phone Number', applicationData.personalInfo.phoneNumber);
-                        addField('Email Address', applicationData.personalInfo.emailAddress);
-                        currentY += sectionSpacing;
-
-                        // Position Applied For
-                        addSectionHeading('Position Applied For');
-                        addField('Position Desired', applicationData.positionInfo.positionDesired);
-                        addField('Date Available', applicationData.positionInfo.dateAvailable);
-                        addField('Desired Salary', applicationData.positionInfo.desiredSalary);
-                        addField('Legally authorized to work in US', applicationData.positionInfo.authorizedToWork === 'yes' ? 'Yes' : 'No');
-                        addField('Employed by Ram Shack before', applicationData.positionInfo.employedBefore === 'yes' ? 'Yes' : 'No');
-                        if (applicationData.positionInfo.employedBefore === 'yes') {
-                            addField('If yes, when', applicationData.positionInfo.employedBeforeWhen);
-                        }
-                        currentY += sectionSpacing;
-
-                        // Education
-                        addSectionHeading('Education');
-                        currentY += subSectionSpacing;
-
-                        addSubSectionHeading('High School');
-                        addField('Name of High School', applicationData.education.highSchool.name);
-                        addField('Location', applicationData.education.highSchool.location);
-                        addField('Dates Attended', `${applicationData.education.highSchool.datesFrom} to ${applicationData.education.highSchool.datesTo}`);
-                        addField('Graduated', applicationData.education.highSchool.graduated === 'yes' ? 'Yes' : 'No');
-                        if (applicationData.education.highSchool.graduated === 'yes') {
-                            addField('Degree/Diploma', applicationData.education.highSchool.degree);
-                        }
-                        currentY += subSectionSpacing;
-
-                        addSubSectionHeading('College/University');
-                        addField('Name of Institution', applicationData.education.college.name);
-                        addField('Location', applicationData.education.college.location);
-                        addField('Dates Attended', `${applicationData.education.college.datesFrom} to ${applicationData.education.college.datesTo}`);
-                        addField('Graduated', applicationData.education.college.graduated === 'yes' ? 'Yes' : 'No');
-                        if (applicationData.education.college.graduated === 'yes') {
-                            addField('Degree/Major', applicationData.education.college.degree);
-                        }
-                        currentY += subSectionSpacing;
-
-                        addSubSectionHeading('Other (Trade School, Certifications, etc.)');
-                        addField('Name of Institution/Program', applicationData.education.otherEducation.name);
-                        addField('Location', applicationData.education.otherEducation.location);
-                        addField('Dates Attended', `${applicationData.education.otherEducation.datesFrom} to ${applicationData.education.otherEducation.datesTo}`);
-                        addField('Certificate/Credential', applicationData.education.otherEducation.credential);
-                        currentY += sectionSpacing;
-
-                        // Work Experience
-                        addSectionHeading('Work Experience');
-                        doc.setFont('helvetica', 'normal');
-                        doc.setFontSize(10);
-                        doc.setTextColor(107, 114, 128); // text-gray-600
-                        addPageIfNeeded(lineHeight);
-                        doc.text('Please list your last three employers, starting with the most recent.', margin, currentY);
-                        currentY += lineHeight + subSectionSpacing;
-
-                        applicationData.workExperience.forEach((employer, index) => {
-                            addSubSectionHeading(`Employer ${index + 1}`);
-                            addField('Company Name', employer.company);
-                            addField('Job Title', employer.title);
-                            addField('Dates Employed', `${employer.datesFrom} to ${employer.datesTo}`);
-                            addField('Supervisor\'s Name', employer.supervisor);
-                            addField('Phone Number', employer.phone);
-                            addField('May we contact this employer', employer.mayContact === 'yes' ? 'Yes' : 'No');
-                            addField('Responsibilities', employer.responsibilities);
-                            currentY += subSectionSpacing;
-                        });
-                        currentY -= subSectionSpacing; // Adjust for last loop iteration
-                        currentY += sectionSpacing;
-
-                        // References
-                        addSectionHeading('References');
-                        doc.setFont('helvetica', 'normal');
-                        doc.setFontSize(10);
-                        doc.setTextColor(107, 114, 128); // text-gray-600
-                        addPageIfNeeded(lineHeight);
-                        doc.text('Please provide three professional references who are not relatives.', margin, currentY);
-                        currentY += lineHeight + subSectionSpacing;
-
-                        applicationData.references.forEach((ref, index) => {
-                            addSubSectionHeading(`Reference ${index + 1}`);
-                            addField('Name', ref.name);
-                            addField('Relationship', ref.relationship);
-                            addField('Phone Number', ref.phone);
-                            addField('Email Address', ref.email);
-                            currentY += subSectionSpacing;
-                        });
-                        currentY -= subSectionSpacing; // Adjust for last loop iteration
-                        currentY += sectionSpacing;
-
-                        // Disclaimer and Signature
-                        addSectionHeading('Disclaimer and Signature');
-                        currentY += subSectionSpacing;
-
-                        doc.setFont('helvetica', 'normal');
-                        doc.setFontSize(10);
-                        doc.setTextColor(75, 85, 99); // text-gray-700
-
-                        const disclaimers = [
-                            { label: 'disclaimer1', text: 'I certify that the information provided in this application is true and complete to the best of my knowledge. I understand that any false or misleading information given in my application or interview(s) may result in my disqualification from employment or termination if discovered after employment.' },
-                            { label: 'disclaimer2', text: 'I authorize The Ram Shack to contact my previous employers, references, and educational institutions to verify the information provided and to inquire about my work performance and character. I release The Ram Shack and any references from liability for any information provided.' },
-                            { label: 'disclaimer3', text: 'I understand that this application does not constitute an an offer of employment. If hired, I agree to abide by all policies, rules, and regulations of The Ram Shack. I understand that my employment will be "at-will," meaning that either I or The Ram Shack may terminate the employment relationship at any time, with or without cause or notice, for any reason not prohibited by law.' }
-                        ];
-
-                        disclaimers.forEach((disclaimer) => {
-                            const disclaimerText = `[${applicationData.disclaimers[disclaimer.label] ? 'X' : ' '}] ${disclaimer.text}`;
-                            const splitDisclaimer = doc.splitTextToSize(disclaimerText, usablePageWidth - 10);
-                            const disclaimerHeight = splitDisclaimer.length * doc.getLineHeight() / doc.internal.scaleFactor;
-                            addPageIfNeeded(disclaimerHeight + fieldSpacing);
-                            doc.text(splitDisclaimer, margin, currentY);
-                            currentY += disclaimerHeight + fieldSpacing;
-                        });
-                        currentY += subSectionSpacing;
-
-                        // Add Signature Image
-                        addPageIfNeeded(40 + fieldSpacing); // Estimate height for signature
-                        doc.setFont('helvetica', 'normal');
-                        doc.setFontSize(11);
-                        doc.setTextColor(31, 41, 55);
-                        doc.text('Signature:', margin, currentY);
-                        currentY += lineHeight;
-
-                        // Capture signature canvas
-                        const signatureCanvas = document.getElementById('signatureCanvas');
-                        const signatureImgData = await html2canvas(signatureCanvas, {
-                            scale: 2, // Keep scale for signature quality
-                            backgroundColor: '#ffffff',
+                        const canvas = await html2canvas(careerAssessmentsSection, {
+                            scale: 2,
                             useCORS: true,
                             logging: false
-                        }).then(canvas => canvas.toDataURL('image/png'));
-
-                        const signatureWidth = 70; // mm
-                        const signatureHeight = (signatureCanvas.height / signatureCanvas.width) * signatureWidth; // Maintain aspect ratio
-
-                        doc.addImage(signatureImgData, 'PNG', margin, currentY, signatureWidth, signatureHeight);
-                        currentY += signatureHeight + fieldSpacing;
-
-                        // Add Date
-                        addField('Date', applicationData.submissionDate);
-                        currentY += sectionSpacing;
-
-
-                        // Determine filename
-                        const fullNameInput = document.getElementById('fullName');
-                        const fileName = fullNameInput && fullNameInput.value ?
-                                         `${fullNameInput.value.replace(/[^a-zA-Z0-9]/g, '_')}_application.pdf` :
-                                         'ram_shack_application.pdf';
-
-                        doc.save(fileName);
-                        console.log("PDF saved successfully.");
-                        downloadStatusElement.textContent = 'Download complete!';
+                        });
+                        const imageDataUrl = canvas.toDataURL('image/png');
+                        const a = document.createElement('a');
+                        a.href = imageDataUrl;
+                        a.download = 'career_assessments_responses.png';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        downloadCareerAssessmentsStatus.textContent = 'Download complete!';
                     } catch (error) {
-                        console.error('Error generating or downloading PDF for Ram Shack Application:', error);
-                        downloadStatusElement.textContent = 'Download failed. Please try again. Error: ' + error.message;
+                        console.error('Error generating or downloading image for Career Assessments:', error);
+                        downloadCareerAssessmentsStatus.textContent = 'Download failed. Please try again.';
                     } finally {
-                        downloadApplicationPDFBtn.disabled = false;
-                        downloadStatusElement.classList.add('hidden'); // Hide status after completion/error
-                        downloadStatusElement.textContent = 'Generating PDF...'; // Reset for next time
+                        downloadCareerAssessmentsBtn.disabled = false;
+                        setTimeout(() => {
+                            downloadCareerAssessmentsStatus.classList.add('hidden');
+                            downloadCareerAssessmentsStatus.textContent = 'Generating image...';
+                        }, 3000);
                     }
                 });
-            } else {
-                console.warn("Signature canvas not found. Ram Shack application features may be limited.");
             }
+
+            // --- Career Info Worksheet Download Logic ---
+            const downloadCareerInfoBtn = document.getElementById('downloadCareerInfoBtn');
+            const careerInfoWorksheetSection = document.getElementById('career-info-worksheet-section');
+            const downloadCareerInfoStatus = document.getElementById('downloadCareerInfoStatus');
+
+            if (downloadCareerInfoBtn) {
+                downloadCareerInfoBtn.addEventListener('click', async () => {
+                    downloadCareerInfoBtn.disabled = true;
+                    downloadCareerInfoStatus.classList.remove('hidden');
+                    downloadCareerInfoStatus.textContent = 'Generating image...';
+
+                    try {
+                        const canvas = await html2canvas(careerInfoWorksheetSection, {
+                            scale: 2,
+                            useCORS: true,
+                            logging: false
+                        });
+                        const imageDataUrl = canvas.toDataURL('image/png');
+                        const a = document.createElement('a');
+                        a.href = imageDataUrl;
+                        a.download = 'career_info_responses.png';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        downloadCareerInfoStatus.textContent = 'Download complete!';
+                    } catch (error) {
+                        console.error('Error generating or downloading image for Career Info:', error);
+                        downloadCareerInfoStatus.textContent = 'Download failed. Please try again.';
+                    } finally {
+                        downloadCareerInfoBtn.disabled = false;
+                        setTimeout(() => {
+                            downloadCareerInfoStatus.classList.add('hidden');
+                            downloadCareerInfoStatus.textContent = 'Generating image...';
+                        }, 3000);
+                    }
+                });
+            }
+
+
+            // --- Illegal Interview Questions Download Logic ---
+            const downloadIllegalQuestionsBtn = document.getElementById('downloadIllegalQuestionsBtn');
+            const illegalQuestionsSection = document.getElementById('illegal-questions-section');
+            const downloadIllegalQuestionsStatus = document.getElementById('downloadIllegalQuestionsStatus');
+
+            if (downloadIllegalQuestionsBtn) {
+                downloadIllegalQuestionsBtn.addEventListener('click', async () => {
+                    downloadIllegalQuestionsBtn.disabled = true;
+                    downloadIllegalQuestionsStatus.classList.remove('hidden');
+                    downloadIllegalQuestionsStatus.textContent = 'Generating image...';
+
+                    try {
+                        const canvas = await html2canvas(illegalQuestionsSection, {
+                            scale: 2,
+                            useCORS: true,
+                            logging: false
+                        });
+                        const imageDataUrl = canvas.toDataURL('image/png');
+                        const a = document.createElement('a');
+                        a.href = imageDataUrl;
+                        a.download = 'illegal_questions_responses.png';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        downloadIllegalQuestionsStatus.textContent = 'Download complete!';
+                    } catch (error) {
+                        console.error('Error generating or downloading image for Illegal Questions:', error);
+                        downloadIllegalQuestionsStatus.textContent = 'Download failed. Please try again.';
+                    } finally {
+                        downloadIllegalQuestionsBtn.disabled = false;
+                        setTimeout(() => {
+                            downloadIllegalQuestionsStatus.classList.add('hidden');
+                            downloadIllegalQuestionsStatus.textContent = 'Generating image...';
+                        }, 3000);
+                    }
+                });
+            }
+
+            // --- References List Download Logic ---
+            const downloadReferencesBtn = document.getElementById('downloadReferencesBtn');
+            const referencesSection = document.getElementById('references-section');
+            const downloadReferencesStatus = document.getElementById('downloadReferencesStatus');
+
+            if (downloadReferencesBtn) {
+                downloadReferencesBtn.addEventListener('click', async () => {
+                    downloadReferencesBtn.disabled = true;
+                    downloadReferencesStatus.classList.remove('hidden');
+                    downloadReferencesStatus.textContent = 'Generating image...';
+
+                    try {
+                        const canvas = await html2canvas(referencesSection, {
+                            scale: 2,
+                            useCORS: true,
+                            logging: false
+                        });
+                        const imageDataUrl = canvas.toDataURL('image/png');
+                        const a = document.createElement('a');
+                        a.href = imageDataUrl;
+                        a.download = 'professional_references.png';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        downloadReferencesStatus.textContent = 'Download complete!';
+                    } catch (error) {
+                        console.error('Error generating or downloading image for References:', error);
+                        downloadReferencesStatus.textContent = 'Download failed. Please try again.';
+                    } finally {
+                        downloadReferencesBtn.disabled = false;
+                        setTimeout(() => {
+                            downloadReferencesStatus.classList.add('hidden');
+                            downloadReferencesStatus.textContent = 'Generating image...';
+                        }, 3000);
+                    }
+                });
+            }
+
+
+            // --- Interview Practice Questions Logic (from interview_question_generator_html) ---
+            const interviewQuestions = [
+                'Tell me about yourself.', 'Why are you interested in this specific role?', 'What are your greatest strengths?',
+                'What are your weaknesses?', 'Describe a challenging situation you faced at work/school and how you overcame it.',
+                'Where do you see yourself in 5 years?', 'How do you handle pressure and stress?',
+                'Give an example of a time you worked collaboratively in a team.', 'What motivates you to excel in your work?',
+                'How do you stay updated with industry trends and knowledge?', 'Why should we hire you?',
+                'What is your greatest professional achievement?', 'Describe your ideal company culture.',
+                'How do you prioritize your work?', 'Tell me about a time you failed and what you learned from it.',
+                'What are your salary expectations?', 'How do you define success?',
+                'What are your hobbies outside of work/school?', 'Describe a time you had to deal with a difficult person.',
+                'What do you know about our company/organization?', 'Why did you choose your major/field of study?',
+                'How do you handle constructive criticism?', 'What is your leadership style?',
+                'Tell me about a time you had to adapt to a change.', 'What are your long-term career goals?',
+                'How do you manage your time effectively?', 'What kind of work environment do you thrive in?',
+                'What questions do you have for me?', 'How do you measure your own performance?'
+            ];
+
+            const generatePracticeQuestionsBtn = document.getElementById('generatePracticeQuestionsBtn');
+            const getPracticeFeedbackBtn = document.getElementById('getPracticeFeedbackBtn');
+            const practiceQuestionContainer = document.getElementById('practice-question-container');
+            const practiceFeedbackArea = document.getElementById('practice-feedback-area');
+            const practiceFeedbackContent = document.getElementById('practice-feedback-content');
+            const practiceFeedbackLoading = document.getElementById('practice-feedback-loading');
+
+            function getRandomQuestionsForPractice(questionsArray, numQuestions) {
+                const shuffled = [...questionsArray];
+                for (let i = shuffled.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+                }
+                return shuffled.slice(0, numQuestions);
+            }
+
+            function renderPracticeQuestions() {
+                practiceQuestionContainer.innerHTML = '';
+                practiceFeedbackArea.classList.add('hidden');
+                practiceFeedbackContent.innerHTML = '';
+
+                const randomQuestions = getRandomQuestionsForPractice(interviewQuestions, 5);
+
+                randomQuestions.forEach((question, index) => {
+                    const questionDiv = document.createElement('div');
+                    questionDiv.className = 'mb-6';
+
+                    const questionP = document.createElement('p');
+                    questionP.className = 'text-lg font-semibold text-gray-800 mb-2';
+                    questionP.textContent = `${index + 1}. ${question}`;
+
+                    const answerTextarea = document.createElement('textarea');
+                    answerTextarea.id = `practice-answer-${index}`; // Unique ID for combined document
+                    answerTextarea.className = 'input-field min-h-[100px] shadow-sm focus:ring-blue-500 focus:border-blue-500';
+                    answerTextarea.placeholder = 'Type your answer here...';
+                    answerTextarea.dataset.question = question; // Store the question with the textarea
+
+                    questionDiv.appendChild(questionP);
+                    questionDiv.appendChild(answerTextarea);
+                    practiceQuestionContainer.appendChild(questionDiv);
+                });
+            }
+
+            async function getPracticeFeedback() {
+                practiceFeedbackArea.classList.remove('hidden');
+                practiceFeedbackContent.innerHTML = '';
+                practiceFeedbackLoading.classList.remove('hidden');
+
+                const answers = [];
+                for (let i = 0; i < 5; i++) {
+                    const textarea = document.getElementById(`practice-answer-${i}`); // Use unique ID
+                    if (textarea) {
+                        answers.push({
+                            question: textarea.dataset.question,
+                            answer: textarea.value
+                        });
+                    }
+                }
+
+                let prompt = "Provide constructive feedback on the following interview answers. Focus on clarity, completeness, relevance, and professionalism. Suggest areas for improvement. Format the feedback clearly for each question.\n\n";
+                answers.forEach((item, index) => {
+                    prompt += `Question ${index + 1}: ${item.question}\n`;
+                    prompt += `Your Answer: ${item.answer || "[No answer provided]"}\n\n`;
+                });
+
+                try {
+                    // Gemini API call
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // Canvas will provide this at runtime
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+
+                        // Apply styling to feedback content
+                        const feedbackLines = text.split('\n');
+                        let formattedFeedback = '';
+                        let inList = false;
+
+                        feedbackLines.forEach(line => {
+                            const trimmedLine = line.trim();
+                            if (trimmedLine.startsWith('Question ') && trimmedLine.includes(':')) {
+                                if (inList) { // Close previous list if any
+                                    formattedFeedback += '</ul>';
+                                    inList = false;
+                                }
+                                formattedFeedback += `<h3 class="text-lg font-semibold text-gray-800 mt-4 mb-2">${trimmedLine}</h3>`;
+                            } else if (trimmedLine.startsWith('- ')) {
+                                if (!inList) { // Start new list
+                                    formattedFeedback += '<ul class="list-disc list-inside text-gray-700 mb-2">';
+                                    inList = true;
+                                }
+                                formattedFeedback += `<li class="ml-4">${trimmedLine.substring(2)}</li>`;
+                            } else if (trimmedLine !== '') {
+                                if (inList) { // Close previous list if any
+                                    formattedFeedback += '</ul>';
+                                    inList = false;
+                                }
+                                formattedFeedback += `<p class="text-gray-700 mb-1">${trimmedLine}</p>`;
+                            }
+                        });
+
+                        if (inList) { // Close any open list at the end
+                            formattedFeedback += '</ul>';
+                        }
+                        practiceFeedbackContent.innerHTML = formattedFeedback;
+
+                    } else {
+                        practiceFeedbackContent.textContent = "Could not generate feedback. Please try again.";
+                        console.error("Unexpected API response structure:", result);
+                    }
+                } catch (error) {
+                    practiceFeedbackContent.textContent = "An error occurred while generating feedback. Please check your network connection or try again later.";
+                    console.error("Error fetching feedback:", error);
+                } finally {
+                    practiceFeedbackLoading.classList.add('hidden');
+                }
+            }
+
+            // Event Listeners for Interview Practice Questions
+            generatePracticeQuestionsBtn.addEventListener('click', renderPracticeQuestions);
+            getPracticeFeedbackBtn.addEventListener('click', getPracticeFeedback);
+
+            // Initial render of practice questions when the page loads
+            renderPracticeQuestions();
+
+            // --- Interview Practice Questions Download Logic ---
+            const downloadInterviewPracticeQuestionsBtn = document.getElementById('downloadInterviewPracticeQuestionsBtn');
+            const interviewPracticeQuestionsSection = document.getElementById('interview-practice-questions-section');
+            const downloadInterviewPracticeQuestionsStatus = document.getElementById('downloadInterviewPracticeQuestionsStatus');
+
+            if (downloadInterviewPracticeQuestionsBtn) {
+                downloadInterviewPracticeQuestionsBtn.addEventListener('click', async () => {
+                    downloadInterviewPracticeQuestionsBtn.disabled = true;
+                    downloadInterviewPracticeQuestionsStatus.classList.remove('hidden');
+                    downloadInterviewPracticeQuestionsStatus.textContent = 'Generating image...';
+
+                    try {
+                        const canvas = await html2canvas(interviewPracticeQuestionsSection, {
+                            scale: 2,
+                            useCORS: true,
+                            logging: false
+                        });
+                        const imageDataUrl = canvas.toDataURL('image/png');
+                        const a = document.createElement('a');
+                        a.href = imageDataUrl;
+                        a.download = 'interview_practice_responses.png';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        downloadInterviewPracticeQuestionsStatus.textContent = 'Download complete!';
+                    } catch (error) {
+                        console.error('Error generating or downloading image for Interview Practice Questions:', error);
+                        downloadInterviewPracticeQuestionsStatus.textContent = 'Download failed. Please try again.';
+                    } finally {
+                        downloadInterviewPracticeQuestionsBtn.disabled = false;
+                        setTimeout(() => {
+                            downloadInterviewPracticeQuestionsStatus.classList.add('hidden');
+                            downloadInterviewPracticeQuestionsStatus.textContent = 'Generating image...';
+                        }, 3000);
+                    }
+                });
+            }
+
+            // --- Questions to Ask the Interviewer Download Logic ---
+            const downloadQuestionsToAskBtn = document.getElementById('downloadQuestionsToAskBtn');
+            const questionsToAskSection = document.getElementById('questions-to-ask-section');
+            const downloadQuestionsToAskStatus = document.getElementById('downloadQuestionsToAskStatus');
+            const getQuestionsToAskFeedbackBtn = document.getElementById('getQuestionsToAskFeedbackBtn');
+            const questionsToAskFeedbackArea = document.getElementById('questions-to-ask-feedback-area');
+            const questionsToAskFeedbackContent = document.getElementById('questions-to-ask-feedback-content');
+            const questionsToAskFeedbackLoading = document.getElementById('questions-to-ask-feedback-loading');
+
+            if (downloadQuestionsToAskBtn) {
+                downloadQuestionsToAskBtn.addEventListener('click', async () => {
+                    downloadQuestionsToAskBtn.disabled = true;
+                    downloadQuestionsToAskStatus.classList.remove('hidden');
+                    downloadQuestionsToAskStatus.textContent = 'Generating image...';
+
+                    try {
+                        const canvas = await html2canvas(questionsToAskSection, {
+                            scale: 2,
+                            useCORS: true,
+                            logging: false
+                        });
+                        const imageDataUrl = canvas.toDataURL('image/png');
+                        const a = document.createElement('a');
+                        a.href = imageDataUrl;
+                        a.download = 'questions_for_interviewer_responses.png';
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        downloadQuestionsToAskStatus.textContent = 'Download complete!';
+                    } catch (error) {
+                        console.error('Error generating or downloading image for Questions to Ask Interviewer:', error);
+                        downloadQuestionsToAskStatus.textContent = 'Download failed. Please try again.';
+                    } finally {
+                        downloadQuestionsToAskBtn.disabled = false;
+                        setTimeout(() => {
+                            downloadQuestionsToAskStatus.classList.add('hidden');
+                            downloadQuestionsToAskStatus.textContent = 'Generating image...';
+                        }, 3000);
+                    }
+                });
+            }
+
+            async function getAIQuestionsToAskFeedback() {
+                questionsToAskFeedbackArea.classList.remove('hidden');
+                questionsToAskFeedbackContent.innerHTML = '';
+                questionsToAskFeedbackLoading.classList.remove('hidden');
+                getQuestionsToAskFeedbackBtn.disabled = true;
+
+                const userQuestions = [];
+                for (let i = 1; i <= 5; i++) {
+                    const questionTextarea = document.getElementById(`askQuestion-${i}`);
+                    const explanationTextarea = document.getElementById(`askExplanation-${i}`);
+                    userQuestions.push({
+                        question: questionTextarea?.value || '',
+                        explanation: explanationTextarea?.value || ''
+                    });
+                }
+
+                const reflection = document.getElementById('askImportance-question')?.value || '';
+
+                let prompt = "Please provide constructive feedback on the following interview questions and their explanations. Evaluate their thoughtfulness, relevance, and whether they avoid easily searchable information. Suggest improvements for each question and the overall reflection. Format the feedback clearly.\n\n";
+
+                userQuestions.forEach((item, index) => {
+                    prompt += `Question ${index + 1}: ${item.question}\n`;
+                    prompt += `Explanation ${index + 1}: ${item.explanation || "[No explanation provided]"}\n\n`;
+                });
+
+                prompt += `Overall Reflection: ${reflection || "[No reflection provided]"}\n`;
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // Canvas will provide this at runtime
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+
+                        const feedbackLines = text.split('\n');
+                        let formattedFeedback = '';
+                        let inList = false;
+
+                        feedbackLines.forEach(line => {
+                            const trimmedLine = line.trim();
+                            if (trimmedLine.startsWith('Question ') && trimmedLine.includes(':') || trimmedLine.startsWith('Overall Reflection:')) {
+                                if (inList) {
+                                    formattedFeedback += '</ul>';
+                                    inList = false;
+                                }
+                                formattedFeedback += `<h3 class="text-lg font-semibold text-gray-800 mt-4 mb-2">${trimmedLine}</h3>`;
+                            } else if (trimmedLine.startsWith('- ')) {
+                                if (!inList) {
+                                    formattedFeedback += '<ul class="list-disc list-inside text-gray-700 mb-2">';
+                                    inList = true;
+                                }
+                                formattedFeedback += `<li class="ml-4">${trimmedLine.substring(2)}</li>`;
+                            } else if (trimmedLine !== '') {
+                                if (inList) {
+                                    formattedFeedback += '</ul>';
+                                    inList = false;
+                                }
+                                formattedFeedback += `<p class="text-gray-700 mb-1">${trimmedLine}</p>`;
+                            }
+                        });
+
+                        if (inList) {
+                            formattedFeedback += '</ul>';
+                        }
+                        questionsToAskFeedbackContent.innerHTML = formattedFeedback;
+
+                    } else {
+                        questionsToAskFeedbackContent.textContent = "Could not generate feedback. Please try again.";
+                        console.error("Unexpected API response structure:", result);
+                    }
+                } catch (error) {
+                    questionsToAskFeedbackContent.textContent = "An error occurred while generating feedback. Please check your network connection or try again later.";
+                    console.error("Error fetching feedback:", error);
+                } finally {
+                    questionsToAskFeedbackLoading.classList.add('hidden');
+                    getQuestionsToAskFeedbackBtn.disabled = false;
+                }
+            }
+            getQuestionsToAskFeedbackBtn.addEventListener('click', getAIQuestionsToAskFeedback);
         });
     </script>
 </body>
